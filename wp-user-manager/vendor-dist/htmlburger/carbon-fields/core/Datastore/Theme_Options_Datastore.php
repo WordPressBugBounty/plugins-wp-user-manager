@@ -88,7 +88,7 @@ class Theme_Options_Datastore extends Key_Value_Datastore
     public function delete(Field $field)
     {
         global $wpdb;
-        $storage_key_patterns = $this->key_toolset->get_storage_key_deleter_patterns(\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Complex_Field'), $field->is_simple_root_field(), $this->get_full_hierarchy_for_field($field), $this->get_full_hierarchy_index_for_field($field));
+        $storage_key_patterns = $this->key_toolset->get_storage_key_deleter_patterns($field instanceof \WPUM\Carbon_Fields\Field\Complex_Field, $field->is_simple_root_field(), $this->get_full_hierarchy_for_field($field), $this->get_full_hierarchy_index_for_field($field));
         $storage_key_comparisons = $this->key_toolset->storage_key_patterns_to_sql('`option_name`', $storage_key_patterns);
         $option_names = $wpdb->get_col('
 			SELECT `option_name`

@@ -16,7 +16,7 @@ class Helper
      * @param  string  $container_type Container type to search in. Optional if $container_id is supplied
      * @param  string  $container_id   Container id to search in. Optional if $container_type is supplied
      * @param  string  $field_name     Field name to search for
-     * @return boolean
+     * @return \Carbon_Fields\Field\Field
      */
     public static function get_field($container_type, $container_id, $field_name)
     {
@@ -35,7 +35,7 @@ class Helper
      * @param  string $container_type Container type to search in. Optional if $container_id is supplied
      * @param  string $container_id   Container id to search in. Optional if $container_type is supplied
      * @param  string $field_name     Field name to search for
-     * @return mixed
+     * @return \Carbon_Fields\Field\Field
      */
     public static function get_field_clone($object_id, $container_type, $container_id, $field_name)
     {
@@ -59,7 +59,7 @@ class Helper
      * @param  string   $container_id   Container id to search in. Optional if $container_type is supplied
      * @param  string   $field_name     Field name to search for
      * @param  \Closure $action         Action to execute
-     * @return void
+     * @return void|mixed
      */
     public static function with_field_clone($object_id, $container_type, $container_id, $field_name, $action)
     {
@@ -94,6 +94,7 @@ class Helper
             if (!$field) {
                 return '';
             }
+            /** @var \Carbon_Fields\Field\Field $field */
             $field->load();
             return $field->get_formatted_value();
         });
@@ -116,6 +117,7 @@ class Helper
                 Incorrect_Syntax_Exception::raise('Could not find a field which satisfies the supplied pattern ' . $container_message . ': ' . $field_name);
                 return;
             }
+            /** @var \Carbon_Fields\Field\Field $field */
             $field->set_value($value);
             $field->save();
         });
@@ -142,6 +144,7 @@ class Helper
      */
     public static function get_post_meta($id, $name, $container_id = '')
     {
+        $id = apply_filters('carbon_get_post_meta_post_id', $id, $name, $container_id);
         return static::get_value($id, 'post_meta', $container_id, $name);
     }
     /**
@@ -154,7 +157,7 @@ class Helper
      */
     public static function set_post_meta($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'post_meta', $container_id, $name, $value);
+        static::set_value($id, 'post_meta', $container_id, $name, $value);
     }
     /**
      * Get theme option field value.
@@ -176,7 +179,7 @@ class Helper
      */
     public static function set_theme_option($name, $value, $container_id = '')
     {
-        return static::set_value(null, 'theme_options', $container_id, $name, $value);
+        static::set_value(null, 'theme_options', $container_id, $name, $value);
     }
     /**
      * Get network option field value for the main site.
@@ -207,12 +210,12 @@ class Helper
      *
      * @param  string $id           Site ID
      * @param  string $name         Field name
+     * @param  array  $value
      * @param  string $container_id
-     * @return mixed
      */
     public static function set_network_option($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'network', $container_id, $name, $value);
+        static::set_value($id, 'network', $container_id, $name, $value);
     }
     /**
      * Get term meta field for a term.
@@ -236,7 +239,7 @@ class Helper
      */
     public static function set_term_meta($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'term_meta', $container_id, $name, $value);
+        static::set_value($id, 'term_meta', $container_id, $name, $value);
     }
     /**
      * Get user meta field for a user.
@@ -260,7 +263,7 @@ class Helper
      */
     public static function set_user_meta($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'user_meta', $container_id, $name, $value);
+        static::set_value($id, 'user_meta', $container_id, $name, $value);
     }
     /**
      * Get comment meta field for a comment.
@@ -284,7 +287,7 @@ class Helper
      */
     public static function set_comment_meta($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'comment_meta', $container_id, $name, $value);
+        static::set_value($id, 'comment_meta', $container_id, $name, $value);
     }
     /**
      * Get nav menu item meta field for a nav menu item.
@@ -308,7 +311,7 @@ class Helper
      */
     public static function set_nav_menu_item_meta($id, $name, $value, $container_id = '')
     {
-        return static::set_value($id, 'nav_menu_item', $container_id, $name, $value);
+        static::set_value($id, 'nav_menu_item', $container_id, $name, $value);
     }
     /**
      * Recursive sorting function by array key.
@@ -453,92 +456,109 @@ class Helper
      * Get an attachment ID given a file URL
      * Modified version of https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
      *
+     * @static
+     * @access public
+     *
      * @param  string  $url
-     * @return integet
+     * @return integer
      */
     public static function get_attachment_id($url)
     {
+        $attachment_id = 0;
         $dir = wp_upload_dir();
-        $filename = \basename($url);
-        if (\strpos($url, $dir['baseurl'] . '/') === \false) {
-            return 0;
-        }
-        $query_args = array('post_type' => 'attachment', 'post_status' => 'inherit', 'fields' => 'ids', 'meta_query' => array(array('value' => $filename, 'compare' => 'LIKE', 'key' => '_wp_attachment_metadata')));
-        $query = new WP_Query($query_args);
-        if ($query->have_posts()) {
-            foreach ($query->posts as $post_id) {
-                $meta = wp_get_attachment_metadata($post_id);
-                $original_file = \basename($meta['file']);
-                $cropped_image_files = wp_list_pluck($meta['sizes'], 'file');
-                if ($original_file === $filename || \in_array($filename, $cropped_image_files)) {
-                    return \intval($post_id);
+        /**
+         * Filters the attachment URL from which the attachment ID is being determined.
+         *
+         * @since 3.0.0
+         *
+         * @param string $url
+         */
+        $url = apply_filters('carbon_fields_attachment_id_base_url', $url);
+        $filename = wp_basename($url);
+        if (\strpos($url, $dir['baseurl'] . '/') !== \false) {
+            $query_args = array('post_type' => 'attachment', 'post_status' => 'inherit', 'fields' => 'ids', 'meta_query' => array(array('value' => $filename, 'compare' => 'LIKE', 'key' => '_wp_attachment_metadata')));
+            $query = new WP_Query($query_args);
+            if ($query->have_posts()) {
+                foreach ($query->posts as $post_id) {
+                    $meta = wp_get_attachment_metadata($post_id);
+                    $original_file = wp_basename($meta['file']);
+                    $sizes = isset($meta['sizes']) && !empty($meta['sizes']) ? $meta['sizes'] : array();
+                    $cropped_image_files = wp_list_pluck($sizes, 'file');
+                    if ($original_file === $filename || \in_array($filename, $cropped_image_files)) {
+                        $attachment_id = \intval($post_id);
+                        break;
+                    }
                 }
             }
         }
-        return 0;
+        /**
+         * Filters the attachment id found from the passed attachment URL.
+         *
+         * @since 3.0.0
+         *
+         * @param  integer $attachment_id
+         * @param  string  $url
+         */
+        return apply_filters('carbon_fields_attachment_id_from_url', $attachment_id, $url);
     }
     /**
      * Returns attachment metadata from an ID.
      *
+     * @static
+     * @access public
+     *
      * @param  string  $id
-     * @param  string  $type Value Type. Can be either id or url
-     * @return boolean
+     * @param  string  $type Value Type. Can be either id or url.
+     * @return array
      */
     public static function get_attachment_metadata($id, $type)
     {
-        $attachment_meta = array('thumb_url' => '', 'default_thumb_url' => '', 'file_ext' => '', 'file_type' => '', 'file_name' => '', 'file_url' => '', 'edit_nonce' => '', 'title' => '', 'caption' => '', 'description' => '', 'alt' => '', 'date' => '', 'filesize' => '', 'width' => '', 'height' => '');
-        // when value_type is set to "url" the $id will hold the url, not the id
+        $attachment_metadata = array('id' => 0, 'thumb_url' => '', 'file_type' => '', 'file_name' => '');
+        // when `$type` is set to 'url' the `$id` will hold the url, not the id
         if ($type === 'url') {
             $attachment_id = static::get_attachment_id($id);
             if ($attachment_id === 0) {
-                $attachment_meta['thumb_url'] = $id;
-                $attachment_meta['default_thumb_url'] = $id;
-                $attachment_meta['file_url'] = $id;
-                return $attachment_meta;
+                $attachment_metadata['thumb_url'] = $id;
             }
             $id = $attachment_id;
         }
         $attachment = get_post($id);
         if (!$attachment) {
-            return $attachment_meta;
+            /**
+             * Filter the metadata for the attachment in case the attachment post is not found.
+             *
+             * @since 3.0.0
+             *
+             * @param array           $attachment_metadata  The attachment metadata.
+             * @param integer|string  $id                   The attachment ID. Either attachment post ID or attachment url.
+             * @param string          $type                 The type of `$id` passed. Either 'id' or 'url'.
+             */
+            return apply_filters('carbon_fields_attachment_not_found_metadata', $attachment_metadata, $id, $type);
         }
-        $meta = wp_get_attachment_metadata($attachment->ID);
-        list($src, $width, $height) = wp_get_attachment_image_src($attachment->ID, 'full');
-        $attachment_meta['edit_nonce'] = wp_create_nonce('update-post_' . $id);
-        $attachment_meta['title'] = get_the_title($id);
-        $attachment_meta['caption'] = get_post_field('post_excerpt', $id);
-        $attachment_meta['description'] = get_post_field('post_content', $id);
-        $attachment_meta['alt'] = get_post_meta($id, '_wp_attachment_image_alt', \true);
-        $attachment_meta['date'] = mysql2date(__('F j, Y'), $attachment->post_date);
-        $attachment_meta['width'] = $width;
-        $attachment_meta['height'] = $height;
-        $attachment_meta['file_url'] = \is_numeric($id) ? wp_get_attachment_url($id) : $id;
-        $attachment_meta['file_name'] = \basename($attachment_meta['file_url']);
-        $attachment_meta['filetype'] = wp_check_filetype($attachment_meta['file_url']);
-        $attachment_meta['file_ext'] = $attachment_meta['filetype']['ext'];
-        // png, mp3, etc..
-        $attachment_meta['file_type'] = \preg_replace('~\\/.+$~', '', $attachment_meta['filetype']['type']);
+        $attachment_metadata['id'] = \intval($id);
+        $attachment_metadata['file_url'] = \is_numeric($id) ? wp_get_attachment_url($id) : $id;
+        $attachment_metadata['file_name'] = wp_basename($attachment_metadata['file_url']);
+        $attachment_metadata['filetype'] = wp_check_filetype($attachment_metadata['file_url']);
+        $attachment_metadata['file_type'] = \preg_replace('~\\/.+$~', '', $attachment_metadata['filetype']['type']);
         // image, video, etc..
-        if ($attachment_meta['file_type'] === 'audio') {
-            $attachment_meta['artist'] = $meta['artist'];
-            $attachment_meta['album'] = $meta['album'];
-            $attachment_meta['length'] = $meta['length_formatted'];
-        }
-        $attachment_meta['default_thumb_url'] = wp_mime_type_icon($id);
-        if ($attachment_meta['file_type'] == 'image') {
-            $attachment_meta['thumb_url'] = $attachment_meta['file_url'];
+        if ($attachment_metadata['file_type'] == 'image') {
+            $attachment_metadata['thumb_url'] = $attachment_metadata['file_url'];
             if ($type == 'id') {
-                $thumb_src = wp_get_attachment_image_src($id, 'thumbnail');
-                $attachment_meta['thumb_url'] = $thumb_src[0];
+                $attachment_metadata['thumb_url'] = wp_get_attachment_thumb_url($id);
             }
         } else {
-            $attachment_meta['thumb_url'] = $attachment_meta['default_thumb_url'];
+            $attachment_metadata['thumb_url'] = wp_mime_type_icon($id);
         }
-        $attached_file = get_attached_file($attachment->ID);
-        if (\file_exists($attached_file)) {
-            $attachment_meta['filesize'] = size_format(\filesize($attached_file));
-        }
-        return $attachment_meta;
+        /**
+         * Filter the metadata for the attachment.
+         *
+         * @since 3.0.0
+         *
+         * @param array           $attachment_metadata  The attachment metadata.
+         * @param integer|string  $id                   The attachment ID. Either attachment post ID or attachment url.
+         * @param string          $type                 The type of `$id` passed. Either 'id' or 'url'.
+         */
+        return apply_filters('carbon_fields_attachment_metadata', $attachment_metadata, $id, $type);
     }
     /**
      * Get the current $_POST or $_GET input array with compacted input values merged in
@@ -563,8 +583,8 @@ class Helper
     public static function expand_compacted_input($input)
     {
         if (isset($input[\WPUM\Carbon_Fields\COMPACT_INPUT_KEY])) {
-            $json = \json_decode($input[\WPUM\Carbon_Fields\COMPACT_INPUT_KEY], \true);
-            $input = \array_merge($input, $json);
+            $inputs = $input[\WPUM\Carbon_Fields\COMPACT_INPUT_KEY];
+            $input = \array_merge($input, $inputs);
         }
         return $input;
     }
@@ -577,7 +597,7 @@ class Helper
      */
     public static function get_valid_options($input, $options)
     {
-        // enfore comparison to be string so we do not get unexpected matches
+        // enforce comparison to be string so we do not get unexpected matches
         // for cases such as "string without any numbers" == 0
         // in array_search()
         $search_options = \array_map('strval', $options);
@@ -608,5 +628,17 @@ class Helper
             $sidebars[] = array('id' => $sidebar['id'], 'name' => $sidebar['name']);
         }
         return $sidebars;
+    }
+    public static function get_attachments_urls($media_files)
+    {
+        if (empty($media_files)) {
+            return \is_array($media_files) ? [] : "";
+        }
+        if (!\is_array($media_files) && (int) $media_files > 0) {
+            return wp_get_attachment_url($media_files);
+        }
+        return \array_map(function ($media_file) {
+            return wp_get_attachment_url($media_file);
+        }, $media_files);
     }
 }

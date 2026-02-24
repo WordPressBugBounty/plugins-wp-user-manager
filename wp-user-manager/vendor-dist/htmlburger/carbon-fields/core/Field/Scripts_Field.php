@@ -43,7 +43,8 @@ abstract class Scripts_Field extends Textarea_Field
      */
     public function print_scripts()
     {
-        if (!$this->get_datastore() || !\is_a($this->get_datastore(), 'WPUM\\Carbon_Fields\\Datastore\\Theme_Options_Datastore')) {
+        $is_valid_datastore = $this->get_datastore() instanceof \WPUM\Carbon_Fields\Datastore\Theme_Options_Datastore || $this->get_datastore() instanceof \WPUM\Carbon_Fields\Datastore\Network_Datastore;
+        if (!$this->get_datastore() || !$is_valid_datastore) {
             return;
         }
         $this->load();

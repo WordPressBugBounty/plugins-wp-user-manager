@@ -10,6 +10,7 @@ use WPUM\Carbon_Fields\Toolset\Key_Toolset;
 use WPUM\Carbon_Fields\Toolset\WP_Toolset;
 use WPUM\Carbon_Fields\Service\Meta_Query_Service;
 use WPUM\Carbon_Fields\Service\Legacy_Storage_Service_v_1_5;
+use WPUM\Carbon_Fields\Service\Revisions_Service;
 use WPUM\Carbon_Fields\Service\REST_API_Service;
 use WPUM\Carbon_Fields\Libraries\Sidebar_Manager\Sidebar_Manager;
 use WPUM\Carbon_Fields\REST_API\Router as REST_API_Router;
@@ -44,7 +45,7 @@ final class Carbon_Fields
     /**
      * Singleton implementation
      *
-     * @return Carbon_Fields\Carbon_Fields
+     * @return Carbon_Fields
      */
     public static function instance()
     {
@@ -248,7 +249,8 @@ final class Carbon_Fields
      * Add a listener to an event
      *
      * @param string   $event
-     * @return Listener $listener
+     * @param Event\Listener $listener
+     * @return Event\Listener $listener
      */
     public static function add_listener($event, $listener)
     {
@@ -257,7 +259,7 @@ final class Carbon_Fields
     /**
      * Remove a listener from any event
      *
-     * @param Listener $listener
+     * @param Event\Listener $listener
      */
     public static function remove_listener($listener)
     {
@@ -268,7 +270,7 @@ final class Carbon_Fields
      *
      * @param  string   $event    The event to listen for
      * @param  string   $callable The callable to call when the event is broadcasted
-     * @return Listener
+     * @return Event\Listener
      */
     public static function on($event, $callable)
     {
@@ -279,7 +281,7 @@ final class Carbon_Fields
      *
      * @param  string   $event    The event to listen for
      * @param  string   $callable The callable to call when the event is broadcasted
-     * @return Listener
+     * @return Event\Listener
      */
     public static function once($event, $callable)
     {
@@ -323,6 +325,9 @@ final class Carbon_Fields
         /* Services */
         $ioc['services'] = function () {
             return new PimpleContainer();
+        };
+        $ioc['services']['revisions'] = function () use($ioc) {
+            return new Revisions_Service();
         };
         $ioc['services']['meta_query'] = function () use($ioc) {
             return new Meta_Query_Service($ioc['container_repository'], $ioc['key_toolset']);

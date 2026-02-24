@@ -3,7 +3,6 @@
 namespace WPUM\Carbon_Fields\Container\Fulfillable\Translator;
 
 use WPUM\Carbon_Fields\Container\Condition\Factory;
-use WPUM\Carbon_Fields\Container\Fulfillable\Fulfillable;
 use WPUM\Carbon_Fields\Container\Fulfillable\Fulfillable_Collection;
 use WPUM\Carbon_Fields\Container\Condition\Condition;
 use WPUM\Carbon_Fields\Exception\Incorrect_Syntax_Exception;

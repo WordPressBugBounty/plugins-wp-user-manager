@@ -113,7 +113,7 @@ final class Router implements RouterInterface
             $parsed++;
             $id = $route->id();
             $this->parsedRoutes[$id] = $route;
-            $path = '/' . \trim($route['path'], '/');
+            $path = '/' . \trim((string) $route['path'], '/');
             // exact match
             if ($path === '/' . \trim($uri->path(), '/')) {
                 $this->results = $this->finalizeRoute($route, [], $uri);
@@ -151,7 +151,7 @@ final class Router implements RouterInterface
     private function validateRoute(RouteInterface $route, $httpMethod)
     {
         $id = $route->id();
-        $path = \trim($route['path'], '/');
+        $path = \trim((string) $route['path'], '/');
         $handler = $route['handler'];
         return \is_string($id) && $id && \filter_var($path, \FILTER_SANITIZE_URL) === $path && \in_array($httpMethod, (array) $route['method'], \true) && (\is_callable($handler) || $handler instanceof ControllerInterface);
     }

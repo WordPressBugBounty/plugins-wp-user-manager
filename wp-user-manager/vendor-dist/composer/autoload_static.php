@@ -4,7 +4,7 @@
 
 namespace WPUM\Composer\Autoload;
 
-class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
+class ComposerStaticInitb84d75b47cf96dd31acf4e158abaeb07
 {
     public static $files = array (
         'wpum0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -17,7 +17,7 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'W' =>
         array (
             'WPUserManager\\Stripe\\' => 21,
             'WPUM\\WPUserManagerBlocks\\' => 25,
@@ -41,75 +41,75 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
     );
 
     public static $prefixDirsPsr4 = array (
-        'WPUserManager\\Stripe\\' => 
+        'WPUserManager\\Stripe\\' =>
         array (
             0 => __DIR__ . '/../..' . '/includes/integrations/stripe',
         ),
-        'WPUM\\WPUserManagerBlocks\\' => 
+        'WPUM\\WPUserManagerBlocks\\' =>
         array (
             0 => __DIR__ . '/..' . '/wp-user-manager/wpum-blocks/includes/classes',
         ),
-        'WPUM\\Symfony\\Polyfill\\Php80\\' => 
+        'WPUM\\Symfony\\Polyfill\\Php80\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
-        'WPUM\\Symfony\\Polyfill\\Mbstring\\' => 
+        'WPUM\\Symfony\\Polyfill\\Mbstring\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'WPUM\\Symfony\\Contracts\\Translation\\' => 
+        'WPUM\\Symfony\\Contracts\\Translation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/translation-contracts',
         ),
-        'WPUM\\Symfony\\Component\\Translation\\' => 
+        'WPUM\\Symfony\\Component\\Translation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'WPUM\\Svg\\' => 
+        'WPUM\\Svg\\' =>
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
         ),
-        'WPUM\\Stripe\\' => 
+        'WPUM\\Stripe\\' =>
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
-        'WPUM\\Sabberworm\\CSS\\' => 
+        'WPUM\\Sabberworm\\CSS\\' =>
         array (
             0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
         ),
-        'WPUM\\Psr\\Http\\Message\\' => 
+        'WPUM\\Psr\\Http\\Message\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'WPUM\\Masterminds\\' => 
+        'WPUM\\Masterminds\\' =>
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
-        'WPUM\\FontLib\\' => 
+        'WPUM\\FontLib\\' =>
         array (
             0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
         ),
-        'WPUM\\FastRoute\\' => 
+        'WPUM\\FastRoute\\' =>
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'WPUM\\Dompdf\\' => 
+        'WPUM\\Dompdf\\' =>
         array (
             0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
-        'WPUM\\Composer\\Installers\\' => 
+        'WPUM\\Composer\\Installers\\' =>
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
-        'WPUM\\Carbon_Fields\\' => 
+        'WPUM\\Carbon_Fields\\' =>
         array (
             0 => __DIR__ . '/..' . '/htmlburger/carbon-fields/core',
         ),
-        'WPUM\\Carbon\\' => 
+        'WPUM\\Carbon\\' =>
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
-        'WPUM\\Brain\\' => 
+        'WPUM\\Brain\\' =>
         array (
             0 => __DIR__ . '/..' . '/brain/cortex/src',
         ),
@@ -227,8 +227,10 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'WPUM\\Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'WPUM\\Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+        'WPUM\\Carbon_Fields\\Block' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Block.php',
         'WPUM\\Carbon_Fields\\Carbon_Fields' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Carbon_Fields.php',
         'WPUM\\Carbon_Fields\\Container' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Container.php',
+        'WPUM\\Carbon_Fields\\Container\\Block_Container' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Container/Block_Container.php',
         'WPUM\\Carbon_Fields\\Container\\Broken_Container' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Container/Broken_Container.php',
         'WPUM\\Carbon_Fields\\Container\\Comment_Meta_Container' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Container/Comment_Meta_Container.php',
         'WPUM\\Carbon_Fields\\Container\\Condition\\Blog_ID_Condition' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Container/Condition/Blog_ID_Condition.php',
@@ -279,6 +281,7 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon_Fields\\Datastore\\Datastore' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Datastore.php',
         'WPUM\\Carbon_Fields\\Datastore\\Datastore_Holder_Interface' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Datastore_Holder_Interface.php',
         'WPUM\\Carbon_Fields\\Datastore\\Datastore_Interface' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Datastore_Interface.php',
+        'WPUM\\Carbon_Fields\\Datastore\\Empty_Datastore' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Empty_Datastore.php',
         'WPUM\\Carbon_Fields\\Datastore\\Key_Value_Datastore' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Key_Value_Datastore.php',
         'WPUM\\Carbon_Fields\\Datastore\\Meta_Datastore' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Meta_Datastore.php',
         'WPUM\\Carbon_Fields\\Datastore\\Nav_Menu_Item_Datastore' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Datastore/Nav_Menu_Item_Datastore.php',
@@ -295,6 +298,7 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon_Fields\\Exception\\Incorrect_Syntax_Exception' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Exception/Incorrect_Syntax_Exception.php',
         'WPUM\\Carbon_Fields\\Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field.php',
         'WPUM\\Carbon_Fields\\Field\\Association_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Association_Field.php',
+        'WPUM\\Carbon_Fields\\Field\\Block_Preview_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Block_Preview_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Broken_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Broken_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Checkbox_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Checkbox_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Color_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Color_Field.php',
@@ -313,6 +317,7 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon_Fields\\Field\\Map_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Map_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Media_Gallery_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Media_Gallery_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Multiselect_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Multiselect_Field.php',
+        'WPUM\\Carbon_Fields\\Field\\Oembed_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Oembed_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Predefined_Options_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Predefined_Options_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Radio_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Radio_Field.php',
         'WPUM\\Carbon_Fields\\Field\\Radio_Image_Field' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Field/Radio_Image_Field.php',
@@ -331,6 +336,11 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon_Fields\\Libraries\\Sidebar_Manager\\Sidebar_Manager' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php',
         'WPUM\\Carbon_Fields\\Loader\\Loader' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Loader/Loader.php',
         'WPUM\\Carbon_Fields\\Pimple\\Container' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/Container.php',
+        'WPUM\\Carbon_Fields\\Pimple\\Exception\\ExpectedInvokableException' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/Exception/ExpectedInvokableException.php',
+        'WPUM\\Carbon_Fields\\Pimple\\Exception\\FrozenServiceException' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/Exception/FrozenServiceException.php',
+        'WPUM\\Carbon_Fields\\Pimple\\Exception\\InvalidServiceIdentifierException' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/Exception/InvalidServiceIdentifierException.php',
+        'WPUM\\Carbon_Fields\\Pimple\\Exception\\UnknownIdentifierException' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/Exception/UnknownIdentifierException.php',
+        'WPUM\\Carbon_Fields\\Pimple\\ServiceIterator' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/ServiceIterator.php',
         'WPUM\\Carbon_Fields\\Pimple\\ServiceProviderInterface' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Pimple/ServiceProviderInterface.php',
         'WPUM\\Carbon_Fields\\Provider\\Container_Condition_Provider' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Provider/Container_Condition_Provider.php',
         'WPUM\\Carbon_Fields\\REST_API\\Decorator' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/REST_API/Decorator.php',
@@ -338,6 +348,7 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
         'WPUM\\Carbon_Fields\\Service\\Legacy_Storage_Service_v_1_5' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Service/Legacy_Storage_Service_v_1_5.php',
         'WPUM\\Carbon_Fields\\Service\\Meta_Query_Service' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Service/Meta_Query_Service.php',
         'WPUM\\Carbon_Fields\\Service\\REST_API_Service' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Service/REST_API_Service.php',
+        'WPUM\\Carbon_Fields\\Service\\Revisions_Service' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Service/Revisions_Service.php',
         'WPUM\\Carbon_Fields\\Service\\Service' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Service/Service.php',
         'WPUM\\Carbon_Fields\\Toolset\\Key_Toolset' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Toolset/Key_Toolset.php',
         'WPUM\\Carbon_Fields\\Toolset\\WP_Toolset' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/Toolset/WP_Toolset.php',
@@ -1059,9 +1070,9 @@ class ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit64ac01d6c59b4fa9ef0c696f3f1b93c9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb84d75b47cf96dd31acf4e158abaeb07::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb84d75b47cf96dd31acf4e158abaeb07::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb84d75b47cf96dd31acf4e158abaeb07::$classMap;
 
         }, null, ClassLoader::class);
     }

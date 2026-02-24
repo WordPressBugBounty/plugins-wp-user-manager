@@ -3,7 +3,6 @@
 namespace WPUM\Carbon_Fields\Field;
 
 use WPUM\Carbon_Fields\Carbon_Fields;
-use WPUM\Carbon_Fields\Pimple\Container as PimpleContainer;
 use WPUM\Carbon_Fields\Datastore\Datastore_Interface;
 use WPUM\Carbon_Fields\Datastore\Datastore_Holder_Interface;
 use WPUM\Carbon_Fields\Value_Set\Value_Set;
@@ -127,13 +126,6 @@ class Field implements Datastore_Holder_Interface
      */
     protected $autoload = \false;
     /**
-     * Whether or not this field will be initialized when the field is in the viewport (visible).
-     *
-     * @see set_lazyload()
-     * @var bool
-     */
-    protected $lazyload = \false;
-    /**
      * Key-value array of attribtues and their values
      *
      * @var array
@@ -226,7 +218,7 @@ class Field implements Datastore_Holder_Interface
      */
     public static function make()
     {
-        return \call_user_func_array(array(\get_class(), 'factory'), \func_get_args());
+        return \call_user_func_array(array(static::class, 'factory'), \func_get_args());
     }
     /**
      * Create a field from a certain type with the specified label.
@@ -267,8 +259,8 @@ class Field implements Datastore_Holder_Interface
     public function activate()
     {
         $this->admin_init();
-        add_action('admin_print_footer_scripts', array(\get_class(), 'admin_hook_scripts'), 5);
-        add_action('admin_print_footer_scripts', array(\get_class(), 'admin_hook_styles'), 5);
+        add_action('admin_print_footer_scripts', array(static::class, 'admin_hook_scripts'), 5);
+        add_action('admin_print_footer_scripts', array(static::class, 'admin_hook_styles'), 5);
         static::activate_field_type(\get_class($this));
         do_action('carbon_fields_field_activated', $this);
     }
@@ -305,6 +297,7 @@ class Field implements Datastore_Holder_Interface
     /**
      * Set array of hierarchy field names
      *
+     * @param array $hierarchy
      * @return self  $this
      */
     public function set_hierarchy($hierarchy)
@@ -324,6 +317,7 @@ class Field implements Datastore_Holder_Interface
     /**
      * Set array of hierarchy indexes
      *
+     * @param array $hierarchy_index
      * @return self  $this
      */
     public function set_hierarchy_index($hierarchy_index)
@@ -394,7 +388,7 @@ class Field implements Datastore_Holder_Interface
         }
         $save = apply_filters('carbon_fields_should_save_field_value', \true, $this->get_value(), $this);
         if ($save) {
-            $this->get_datastore()->save($this);
+            $this->get_datastore()->save(apply_filters('carbon_fields_before_field_save', $this));
         }
     }
     /**
@@ -402,7 +396,7 @@ class Field implements Datastore_Holder_Interface
      */
     public function delete()
     {
-        $this->get_datastore()->delete($this);
+        $this->get_datastore()->delete(apply_filters('carbon_fields_before_field_delete', $this));
     }
     /**
      * Load the field value from an input array based on its name
@@ -532,6 +526,9 @@ class Field implements Datastore_Holder_Interface
     }
     /**
      * Alias for $this->get_value_set()->set( $value );
+     *
+     * @param mixed $value
+     * @return self  $this
      */
     public function set_value($value)
     {
@@ -558,7 +555,7 @@ class Field implements Datastore_Holder_Interface
      * Set default field value
      *
      * @param  mixed $default_value
-     * @return self  $this
+     * @return $this
      */
     public function set_default_value($default_value)
     {
@@ -577,6 +574,7 @@ class Field implements Datastore_Holder_Interface
     /**
      * Set field base name as defined in the container.
      *
+     * @param string $name
      * @return self  $this
      */
     public function set_base_name($name)
@@ -730,7 +728,7 @@ class Field implements Datastore_Holder_Interface
     /**
      * Return the field help text
      *
-     * @return object $this
+     * @return string
      */
     public function get_help_text()
     {
@@ -740,6 +738,7 @@ class Field implements Datastore_Holder_Interface
      * Set additional text to be displayed during field render,
      * containing information and guidance for the user
      *
+     * @param string $help_text
      * @return self  $this
      */
     public function set_help_text($help_text)
@@ -751,6 +750,7 @@ class Field implements Datastore_Holder_Interface
      * Alias for set_help_text()
      *
      * @see set_help_text()
+     * @param string $help_text
      * @return object $this
      */
     public function help_text($help_text)
@@ -775,26 +775,6 @@ class Field implements Datastore_Holder_Interface
     public function set_autoload($autoload)
     {
         $this->autoload = $autoload;
-        return $this;
-    }
-    /**
-     * Return whether or not this field should be lazyloaded.
-     *
-     * @return bool
-     */
-    public function get_lazyload()
-    {
-        return $this->lazyload;
-    }
-    /**
-     * Whether or not this field will be initialized when the field is in the viewport (visible).
-     *
-     * @param  bool  $lazyload
-     * @return self  $this
-     */
-    public function set_lazyload($lazyload)
-    {
-        $this->lazyload = $lazyload;
         return $this;
     }
     /**
@@ -979,7 +959,7 @@ class Field implements Datastore_Holder_Interface
         if ($load) {
             $this->load();
         }
-        $field_data = array('id' => $this->get_id(), 'type' => $this->get_type(), 'label' => $this->get_label(), 'name' => $this->get_name(), 'base_name' => $this->get_base_name(), 'value' => $this->get_formatted_value(), 'default_value' => $this->get_default_value(), 'attributes' => (object) $this->get_attributes(), 'help_text' => $this->get_help_text(), 'context' => $this->get_context(), 'required' => $this->is_required(), 'lazyload' => $this->get_lazyload(), 'width' => $this->get_width(), 'classes' => $this->get_classes(), 'conditional_logic' => $this->get_conditional_logic());
+        $field_data = array('id' => $this->get_id(), 'type' => $this->get_type(), 'label' => $this->get_label(), 'name' => $this->get_name(), 'base_name' => $this->get_base_name(), 'value' => $this->get_formatted_value(), 'default_value' => $this->get_default_value(), 'attributes' => (object) $this->get_attributes(), 'help_text' => $this->get_help_text(), 'context' => $this->get_context(), 'required' => $this->is_required(), 'width' => $this->get_width(), 'classes' => $this->get_classes(), 'conditional_logic' => $this->get_conditional_logic());
         return $field_data;
     }
     /**

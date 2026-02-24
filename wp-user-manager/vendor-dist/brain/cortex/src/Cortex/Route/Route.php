@@ -59,6 +59,7 @@ final class Route implements RouteInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return \array_key_exists($offset, $this->storage);
@@ -66,6 +67,7 @@ final class Route implements RouteInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->offsetExists($offset) ? $this->storage[$offset] : null;
@@ -73,6 +75,7 @@ final class Route implements RouteInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->storage[$offset] = $value;
@@ -80,6 +83,7 @@ final class Route implements RouteInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset) && $offset !== 'id') {

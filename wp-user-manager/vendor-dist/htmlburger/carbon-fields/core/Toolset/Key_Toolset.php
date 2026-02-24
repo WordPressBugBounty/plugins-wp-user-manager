@@ -214,6 +214,7 @@ class Key_Toolset
      */
     public function storage_key_patterns_to_sql($table_column, $patterns)
     {
+        global $wpdb;
         $sql = array();
         foreach ($patterns as $storage_key => $type) {
             $comparison = '';
@@ -222,7 +223,7 @@ class Key_Toolset
                     $comparison = $table_column . ' = "' . esc_sql($storage_key) . '"';
                     break;
                 case static::PATTERN_COMPARISON_STARTS_WITH:
-                    $comparison = $table_column . ' LIKE "' . esc_sql($storage_key) . '%"';
+                    $comparison = $table_column . ' LIKE "' . $wpdb->esc_like($storage_key) . '%"';
                     break;
                 default:
                     Incorrect_Syntax_Exception::raise('Unsupported storage key pattern type used: "' . $type . '"');

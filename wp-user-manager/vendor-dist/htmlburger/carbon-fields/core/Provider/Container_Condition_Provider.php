@@ -123,7 +123,7 @@ class Container_Condition_Provider implements ServiceProviderInterface
             $condition->set_comparers($ioc['container_condition_comparer_collections']['array']);
             return $condition;
         });
-        $cc_ioc['user_capabiltiy'] = $cc_ioc->factory(function () use($ioc) {
+        $cc_ioc['user_capability'] = $cc_ioc->factory(function () use($ioc) {
             $condition = new \WPUM\Carbon_Fields\Container\Condition\User_Capability_Condition();
             $condition->set_comparers(array(
                 // Only support the custom comparer as this condition has its own comparison methods
@@ -234,7 +234,7 @@ class Container_Condition_Provider implements ServiceProviderInterface
      * Filter the Post_Meta_Container static condition types
      *
      * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_post_meta_container_static_condition_types($condition_types, $container_type, $container)
@@ -244,8 +244,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the Post_Meta_Container dynamic condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_post_meta_container_dynamic_condition_types($condition_types, $container_type, $container)
@@ -255,8 +256,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the Term_Meta_Container static condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_term_meta_container_static_condition_types($condition_types, $container_type, $container)
@@ -266,8 +268,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the Term_Meta_Container dynamic condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_term_meta_container_dynamic_condition_types($condition_types, $container_type, $container)
@@ -277,8 +280,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the User_Meta_Container static condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_user_meta_container_static_condition_types($condition_types, $container_type, $container)
@@ -288,8 +292,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the User_Meta_Container dynamic condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_user_meta_container_dynamic_condition_types($condition_types, $container_type, $container)
@@ -299,8 +304,9 @@ class Container_Condition_Provider implements ServiceProviderInterface
     /**
      * Filter the Theme_Options_Container static condition types
      *
-     * @param  array<string>                     $condition_types
-     * @param  Carbon_Fields\Container\Container $container
+     * @param  array<string>                      $condition_types
+     * @param  string                             $container_type
+     * @param  \Carbon_Fields\Container\Container $container
      * @return array<string>
      */
     public function filter_theme_options_container_static_condition_types($condition_types, $container_type, $container)

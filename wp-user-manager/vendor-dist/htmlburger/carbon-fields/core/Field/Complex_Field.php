@@ -3,9 +3,6 @@
 namespace WPUM\Carbon_Fields\Field;
 
 use WPUM\Carbon_Fields\Datastore\Datastore_Interface;
-use WPUM\Carbon_Fields\Helper\Helper;
-use WPUM\Carbon_Fields\Field\Field;
-use WPUM\Carbon_Fields\Field\Group_Field;
 use WPUM\Carbon_Fields\Value_Set\Value_Set;
 use WPUM\Carbon_Fields\Exception\Incorrect_Syntax_Exception;
 /**
@@ -100,6 +97,7 @@ class Complex_Field extends Field
     /**
      * Set array of hierarchy field names
      *
+     * @param array $hierarchy
      * @return self  $this
      */
     public function set_hierarchy($hierarchy)
@@ -204,6 +202,7 @@ class Complex_Field extends Field
         }
         $reserved_names = array(Value_Set::VALUE_PROPERTY, static::TYPE_PROPERTY);
         foreach ($fields as $field) {
+            /** @var Field $field */
             if (\in_array($field->get_base_name(), $reserved_names)) {
                 Incorrect_Syntax_Exception::raise('"' . $field->get_base_name() . '" is a reserved keyword for Complex fields and cannot be used for a field name.');
                 return $this;
@@ -267,6 +266,7 @@ class Complex_Field extends Field
      *  - plural_name - the plural entries label
      *
      * @param  array $labels Labels
+     * @return Complex_Field
      */
     public function setup_labels($labels)
     {
@@ -347,7 +347,7 @@ class Complex_Field extends Field
             foreach ($group_fields as $field) {
                 $tmp_field = $this->get_clone_under_field_in_hierarchy($field, $this, $input_group_index);
                 $tmp_field->set_value_from_input($values);
-                if (\is_a($tmp_field, \get_class())) {
+                if ($tmp_field instanceof Complex_Field) {
                     $value_group[$tmp_field->get_base_name()] = $tmp_field->get_value_tree();
                 } else {
                     $value_group[$tmp_field->get_base_name()] = $tmp_field->get_full_value();
@@ -373,11 +373,11 @@ class Complex_Field extends Field
         }
         $save = apply_filters('carbon_fields_should_save_field_value', \true, $this->get_value(), $this);
         if ($save) {
-            $this->get_datastore()->save($this);
+            $this->get_datastore()->save(apply_filters('carbon_fields_before_complex_field_save', $this));
             $field_groups = $this->get_prefilled_groups($this->get_value(), $this->get_value_tree());
             foreach ($field_groups as $group_index => $fields) {
                 foreach ($fields as $field) {
-                    if (!\is_a($field, __NAMESPACE__ . '\\Field')) {
+                    if (!$field instanceof Field) {
                         continue;
                     }
                     $field->save();
@@ -395,7 +395,7 @@ class Complex_Field extends Field
         foreach ($field_groups as $group_index => $field_group) {
             $value[$group_index] = array();
             foreach ($field_group as $key => $field) {
-                if (\is_a($field, __NAMESPACE__ . '\\Field')) {
+                if ($field instanceof Field) {
                     $value[$group_index][$field->get_base_name()] = $field->get_formatted_value();
                 } else {
                     if ($key === Value_Set::VALUE_PROPERTY) {
@@ -468,6 +468,7 @@ class Complex_Field extends Field
      * Set the full value tree of all groups and their fields
      *
      * @see    Internal Glossary in DEVELOPMENT.MD
+     * @param array $value_tree
      * @return self     $this
      */
     public function set_value_tree($value_tree)
@@ -496,7 +497,7 @@ class Complex_Field extends Field
             $group = $this->get_group_by_name($fields[Value_Set::VALUE_PROPERTY]);
             $data = array('name' => $group->get_name(), 'label' => $group->get_label(), 'label_template' => $group->get_label_template(), 'group_id' => $group->get_group_id(), 'collapsed' => $this->get_collapsed(), 'fields' => array());
             foreach ($fields as $field) {
-                if (!\is_a($field, __NAMESPACE__ . '\\Field')) {
+                if (!$field instanceof Field) {
                     continue;
                 }
                 $data['fields'][] = $field->to_json(\false);

@@ -74,7 +74,7 @@ class Group_Field
     public function add_fields($fields)
     {
         foreach ($fields as $field) {
-            if (!\is_a($field, __NAMESPACE__ . '\\Field')) {
+            if (!$field instanceof Field) {
                 Incorrect_Syntax_Exception::raise('Object must be of type ' . __NAMESPACE__ . '\\Field');
             }
             $this->register_field_name($field->get_name());
@@ -208,7 +208,7 @@ class Group_Field
     /**
      * Assign a DataStore instance for all group fields.
      *
-     * @param  object  $datastore
+     * @param  Datastore_Interface  $datastore
      * @param  boolean $set_as_default
      * @return self    $this
      */

@@ -53,7 +53,15 @@ class Decorator
                 }
                 $getter = function ($object, $field_name) use($container) {
                     $object_id = self::get_object_id($object, $container->type);
-                    return Helper::get_value($object_id, $container->type, '', $field_name);
+                    $value = Helper::get_value($object_id, $container->type, '', $field_name);
+                    $field = Helper::get_field($container->type, $container->id, $field_name);
+                    if (apply_filters('carbon_fields_rest_api_return_attachments_as_urls', \false, $value, $field, $object_id)) {
+                        $attachments_class = ["WPUM\\Carbon_Fields\\Field\\Media_Gallery_Field", "WPUM\\Carbon_Fields\\Field\\File_Field", "WPUM\\Carbon_Fields\\Field\\Image_Field"];
+                        if (\in_array(\get_class($field), $attachments_class)) {
+                            $value = Helper::get_attachments_urls($value);
+                        }
+                    }
+                    return $value;
                 };
                 $setter = function ($value, $object, $field_name) use($container) {
                     $object_id = self::get_object_id($object, $container->type);
@@ -66,6 +74,7 @@ class Decorator
     /**
      * Get Post Meta Container visibility settings
      *
+     * @param \Carbon_Fields\Container\Post_Meta_Container $container
      * @return array
      */
     public static function get_post_meta_container_settings($container)
@@ -75,6 +84,7 @@ class Decorator
     /**
      * Get Term Meta Container visibility settings
      *
+     * @param \Carbon_Fields\Container\Term_Meta_Container $container
      * @return array
      */
     public static function get_term_meta_container_settings($container)
@@ -84,6 +94,7 @@ class Decorator
     /**
      * Get User Meta Container visibility settings
      *
+     * @param \Carbon_Fields\Container\User_Meta_Container $container
      * @return string
      */
     public static function get_user_meta_container_settings($container)
@@ -93,6 +104,7 @@ class Decorator
     /**
      * Get Comment Meta Container visibility settings
      *
+     * @param \Carbon_Fields\Container\Comment_Meta_Container $container
      * @return string
      */
     public static function get_comment_meta_container_settings($container)

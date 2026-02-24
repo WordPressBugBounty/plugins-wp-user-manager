@@ -15,10 +15,6 @@ class Map_Field extends Field
      */
     protected $default_value = array(Value_Set::VALUE_PROPERTY => '40.346544,-101.645507', 'lat' => 40.346544, 'lng' => -101.645507, 'zoom' => 10, 'address' => '');
     /**
-     * {@inheritDoc}
-     */
-    protected $lazyload = \true;
-    /**
      * Create a field from a certain type with the specified label.
      *
      * @param string $type  Field type
@@ -91,7 +87,7 @@ class Map_Field extends Field
      * @param  string $lat  Latitude
      * @param  string $lng  Longitude
      * @param  int    $zoom Zoom level
-     * @return self   $this
+     * @return $this
      */
     public function set_position($lat, $lng, $zoom)
     {

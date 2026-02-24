@@ -14,7 +14,7 @@ class Router
      *
      * @var array
      */
-    protected $routes = array('post_meta' => array('path' => '/posts/(?P<id>\\d+)', 'callback' => 'get_post_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'term_meta' => array('path' => '/terms/(?P<id>\\d+)', 'callback' => 'get_term_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'user_meta' => array('path' => '/users/(?P<id>\\d+)', 'callback' => 'get_user_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'comment_meta' => array('path' => '/comments/(?P<id>\\d+)', 'callback' => 'get_comment_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'theme_options' => array('path' => '/options/', 'callback' => 'options_accessor', 'permission_callback' => 'options_permission', 'methods' => array('GET', 'POST')));
+    protected $routes = array('post_meta' => array('path' => '/posts/(?P<id>\\d+)', 'callback' => 'get_post_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'term_meta' => array('path' => '/terms/(?P<id>\\d+)', 'callback' => 'get_term_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'user_meta' => array('path' => '/users/(?P<id>\\d+)', 'callback' => 'get_user_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'comment_meta' => array('path' => '/comments/(?P<id>\\d+)', 'callback' => 'get_comment_meta', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'theme_options' => array('path' => '/options/', 'callback' => 'options_accessor', 'permission_callback' => 'options_permission', 'methods' => array('GET', 'POST')), 'association_data' => array('path' => '/association', 'callback' => 'get_association_data', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'association_options' => array('path' => '/association/options', 'callback' => 'get_association_options', 'permission_callback' => 'allow_access', 'methods' => 'GET'), 'attachment_data' => array('path' => '/attachment', 'callback' => 'get_attachment_data', 'permission_callback' => 'allow_access', 'methods' => 'GET', 'args' => 'attachment_data_args_schema'), 'block_renderer' => array('path' => '/block-renderer', 'callback' => 'block_renderer', 'permission_callback' => 'block_renderer_permission', 'methods' => 'POST', 'args' => 'block_renderer_args_schema'));
     /**
      * Version of the API
      *
@@ -53,6 +53,8 @@ class Router
     }
     /**
      * Set routes
+     *
+     * @param array $routes
      */
     public function set_routes($routes)
     {
@@ -69,6 +71,8 @@ class Router
     }
     /**
      * Set version
+     *
+     * @param string $version
      */
     public function set_version($version)
     {
@@ -85,6 +89,8 @@ class Router
     }
     /**
      * Set vendor
+     *
+     * @param string $vendor
      */
     public function set_vendor($vendor)
     {
@@ -126,13 +132,13 @@ class Router
      */
     protected function register_route($route)
     {
-        register_rest_route($this->get_vendor() . '/v' . $this->get_version(), $route['path'], array('methods' => $route['methods'], 'permission_callback' => array($this, $route['permission_callback']), 'callback' => array($this, $route['callback'])));
+        register_rest_route($this->get_vendor() . '/v' . $this->get_version(), $route['path'], array('methods' => $route['methods'], 'permission_callback' => array($this, $route['permission_callback']), 'callback' => array($this, $route['callback']), 'args' => isset($route['args']) ? \call_user_func(array($this, $route['args'])) : array()));
     }
     /**
      * Proxy method for handling get/set for theme options
      *
-     * @param  WP_REST_Request $request
-     * @return array|WP_REST_Response
+     * @param  \WP_REST_Request $request
+     * @return array|\WP_REST_Response
      */
     public function options_accessor($request)
     {
@@ -145,7 +151,7 @@ class Router
     /**
      * Proxy method for handling theme options permissions
      *
-     * @param  WP_REST_Request $request
+     * @param  \WP_REST_Request $request
      * @return bool
      */
     public function options_permission($request)
@@ -172,7 +178,14 @@ class Router
             if (!$field->get_visible_in_rest_api()) {
                 continue;
             }
-            $values[$field->get_base_name()] = Helper::get_value($object_id, $container_type, '', $field->get_base_name());
+            $value = Helper::get_value($object_id, $container_type, '', $field->get_base_name());
+            if (apply_filters('carbon_fields_rest_api_return_attachments_as_urls', \false, $value, $field, $object_id)) {
+                $attachments_class = ["WPUM\\Carbon_Fields\\Field\\Media_Gallery_Field", "WPUM\\Carbon_Fields\\Field\\File_Field", "WPUM\\Carbon_Fields\\Field\\Image_Field"];
+                if (\in_array(\get_class($field), $attachments_class)) {
+                    $value = Helper::get_attachments_urls($value);
+                }
+            }
+            $values[$field->get_base_name()] = $value;
         }
         return $values;
     }
@@ -221,6 +234,59 @@ class Router
         return array('carbon_fields' => $carbon_data);
     }
     /**
+     * Get Carbon Fields association selected options.
+     *
+     * @access public
+     *
+     * @return array
+     */
+    public function get_association_data()
+    {
+        $container_id = $_GET['container_id'];
+        $field_id = $_GET['field_id'];
+        $options = isset($_GET['options']) ? \explode(';', $_GET['options']) : array();
+        $return_value = array();
+        /** @var \Carbon_Fields\Field\Association_Field $field */
+        $field = Helper::get_field(null, $container_id, $field_id);
+        $options = \array_map(function ($option) {
+            $option = \explode(':', $option);
+            return ['id' => $option[0], 'type' => $option[1], 'subtype' => $option[2]];
+        }, $options);
+        foreach ($options as $option) {
+            $item = array('type' => $option['type'], 'subtype' => $option['subtype'], 'thumbnail' => $field->get_thumbnail_by_type($option['id'], $option['type'], $option['subtype']), 'id' => \intval($option['id']), 'title' => $field->get_title_by_type($option['id'], $option['type'], $option['subtype']), 'label' => $field->get_item_label($option['id'], $option['type'], $option['subtype']), 'is_trashed' => $option['type'] == 'post' && get_post_status($option['id']) === 'trash');
+            $return_value[] = $item;
+        }
+        return $return_value;
+    }
+    /**
+     * Get Carbon Fields association options data.
+     *
+     * @access public
+     *
+     * @return array
+     */
+    public function get_association_options()
+    {
+        $page = isset($_GET['page']) ? absint($_GET['page']) : 1;
+        $term = isset($_GET['term']) ? sanitize_text_field($_GET['term']) : '';
+        $container_id = $_GET['container_id'];
+        $field_id = $_GET['field_id'];
+        /** @var \Carbon_Fields\Field\Association_Field $field */
+        $field = Helper::get_field(null, $container_id, $field_id);
+        return $field->get_options(array('page' => $page, 'term' => $term));
+    }
+    /**
+     * Get attachment data by given ID or URL.
+     *
+     * @return array
+     */
+    public function get_attachment_data()
+    {
+        $type = sanitize_text_field($_GET['type']);
+        $value = sanitize_text_field($_GET['value']);
+        return Helper::get_attachment_metadata($value, $type);
+    }
+    /**
      * Retrieve Carbon theme options
      *
      * @return array
@@ -233,8 +299,8 @@ class Router
     /**
      * Set Carbon theme options
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_Error|WP_REST_Response
+     * @param \WP_REST_Request $request Full data about the request.
+     * @return \WP_Error|\WP_REST_Response
      */
     protected function set_options($request)
     {
@@ -250,5 +316,74 @@ class Router
             }
         }
         return new \WP_REST_Response(__('Theme Options updated.', 'carbon-fields'), 200);
+    }
+    /**
+     * Checks if a given request has access to read blocks.
+     *
+     * @see https://github.com/WordPress/WordPress/blob/master/wp-includes/rest-api/endpoints/class-wp-rest-block-renderer-controller.php#L78-L116
+     *
+     * @param  \WP_REST_Request
+     * @return true|\WP_Error
+     */
+    public function block_renderer_permission($request)
+    {
+        global $post;
+        $post_id = isset($request['post_id']) ? \intval($request['post_id']) : 0;
+        if (0 < $post_id) {
+            $post = get_post($post_id);
+            if (!$post || !current_user_can('edit_post', $post->ID)) {
+                return new \WPUM\WP_Error('block_cannot_read', __('Sorry, you are not allowed to read blocks of this post.', 'carbon-fields'), array('status' => rest_authorization_required_code()));
+            }
+        } else {
+            if (!current_user_can('edit_posts')) {
+                return new \WPUM\WP_Error('block_cannot_read', __('Sorry, you are not allowed to read blocks as this user.', 'carbon-fields'), array('status' => rest_authorization_required_code()));
+            }
+        }
+        return \true;
+    }
+    /**
+     * Returns the schema of the accepted arguments.
+     *
+     * @return array
+     */
+    public function attachment_data_args_schema()
+    {
+        return array('type' => array('type' => 'string', 'required' => \true, 'description' => __('The requested type: ID or URL.', 'carbon-fields')), 'value' => array('type' => 'string', 'required' => \true, 'description' => __('The ID / URL of the attachment', 'carbon-fields')));
+    }
+    /**
+     * Returns the schema of the accepted arguments.
+     *
+     * @see https://github.com/WordPress/WordPress/blob/master/wp-includes/rest-api/endpoints/class-wp-rest-block-renderer-controller.php#L56-L71
+     *
+     * @return array
+     */
+    public function block_renderer_args_schema()
+    {
+        return array('name' => array('type' => 'string', 'required' => \true, 'description' => __('The name of the block.', 'carbon-fields')), 'content' => array('type' => 'string', 'required' => \true, 'description' => __('The content of the block.', 'carbon-fields')), 'post_id' => array('type' => 'integer', 'description' => __('ID of the post context.', 'carbon-fields')));
+    }
+    /**
+     * Returns block output from block's registered render_callback.
+     *
+     * @see https://github.com/WordPress/WordPress/blob/master/wp-includes/rest-api/endpoints/class-wp-rest-block-renderer-controller.php#L118-L154
+     *
+     * @param  \WP_REST_Request $request
+     * @return \WP_REST_Response|\WP_Error
+     */
+    public function block_renderer($request)
+    {
+        global $post;
+        $post_id = isset($request['post_id']) ? \intval($request['post_id']) : 0;
+        if (0 < $post_id) {
+            $post = get_post($post_id);
+            // Set up postdata since this will be needed if post_id was set.
+            setup_postdata($post);
+        }
+        $registry = \WPUM\WP_Block_Type_Registry::get_instance();
+        $block = $registry->get_registered($request['name']);
+        if (null === $block) {
+            return new \WPUM\WP_Error('block_invalid', __('Invalid block.'), array('status' => 404));
+        }
+        $data = array('rendered' => do_blocks($request['content']));
+        return rest_ensure_response($data);
     }
 }

@@ -11,17 +11,17 @@ use WPUM\Carbon_Fields\Value_Set\Value_Set;
 class Set_Field extends Predefined_Options_Field
 {
     /**
-     * The options limit.
-     *
-     * @var int
-     */
-    protected $limit_options = 0;
-    /**
      * Default field value
      *
      * @var array
      */
     protected $default_value = array();
+    /**
+     * The options limit.
+     *
+     * @var int
+     */
+    protected $limit_options = 0;
     /**
      * Create a field from a certain type with the specified label.
      *
@@ -66,5 +66,15 @@ class Set_Field extends Predefined_Options_Field
         $value = $this->get_value();
         $value = $this->get_values_from_options($value);
         return $value;
+    }
+    /**
+     * Set the number of the options to be displayed at the initial field display.
+     *
+     * @param  int $limit
+     */
+    public function limit_options($limit)
+    {
+        $this->limit_options = $limit;
+        return $this;
     }
 }

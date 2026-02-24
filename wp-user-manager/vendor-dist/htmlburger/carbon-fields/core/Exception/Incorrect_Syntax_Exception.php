@@ -8,8 +8,11 @@ class Incorrect_Syntax_Exception extends \Exception
     public static $throw_errors = WP_DEBUG;
     /**
      * Throw an exception when WP_DEBUG is enabled, and show a friendly admin notice otherwise
+     *
+     * @param string $message
+     * @param int    $code    (optional)
      */
-    public static function raise($message, $code = null)
+    public static function raise($message, $code = 0)
     {
         if (empty(static::$errors)) {
             add_action('admin_notices', array(__NAMESPACE__ . '\\Incorrect_Syntax_Exception', 'print_errors'));

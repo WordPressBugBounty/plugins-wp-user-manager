@@ -3,7 +3,6 @@
 namespace WPUM\Carbon_Fields\Widget;
 
 use WPUM\Carbon_Fields\Helper\Helper;
-use WPUM\Carbon_Fields\Field\Field;
 use WPUM\Carbon_Fields\Container\Container;
 use WPUM\Carbon_Fields\Datastore\Datastore;
 use WPUM\Carbon_Fields\Exception\Incorrect_Syntax_Exception;
@@ -16,7 +15,7 @@ abstract class Widget extends \WP_Widget
     /**
      * Widget Datastore
      *
-     * @var Widget_Datastore
+     * @var \Carbon_Fields\Datastore\Widget_Datastore
      */
     protected $datastore;
     /**
@@ -103,11 +102,22 @@ abstract class Widget extends \WP_Widget
     /**
      * Outputs the settings update form.
      *
-     * @param array $instance Current settings.
+     * @param  array $instance Current settings.
+     * @return void
      */
     public function form($instance)
     {
         $this->datastore->import_storage($instance);
+        $this->register_container(\true);
+    }
+    /**
+     * Registers the container definition for the widget.
+     *
+     * @param  boolean $render Whether the form should be rendered
+     * @return void
+     */
+    public function register_container($render = \false)
+    {
         $custom_fields = array();
         foreach ($this->custom_fields as $field) {
             $tmp_field = clone $field;
@@ -116,7 +126,10 @@ abstract class Widget extends \WP_Widget
             $tmp_field->set_name($field_name);
             $custom_fields[] = $tmp_field;
         }
-        Container::factory('widget', $this->id, $this->id)->add_fields($custom_fields)->init();
+        $container = Container::factory('widget', $this->id, $this->id)->add_fields($custom_fields)->init();
+        if ($render) {
+            $container->render();
+        }
     }
     /**
      * Echoes the widget content.
@@ -164,7 +177,7 @@ abstract class Widget extends \WP_Widget
     public function add_fields($fields)
     {
         foreach ($fields as $field) {
-            if (!\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Field')) {
+            if (!$field instanceof \WPUM\Carbon_Fields\Field\Field) {
                 Incorrect_Syntax_Exception::raise('WPUM\\Object must be of type Carbon_Fields\\Field\\Field');
                 return;
             }

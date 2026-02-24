@@ -59,6 +59,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->queue->current();
@@ -66,6 +67,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->queue->next();
@@ -73,6 +75,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->queue->key();
@@ -80,6 +83,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->queue->valid();
@@ -87,6 +91,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->queue->rewind();
@@ -94,6 +99,7 @@ final class PriorityRouteCollection implements RouteCollectionInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->queue->count();

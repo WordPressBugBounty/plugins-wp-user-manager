@@ -53,6 +53,7 @@ final class Group implements GroupInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->route->offsetExists($offset);
@@ -60,6 +61,7 @@ final class Group implements GroupInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->route->offsetGet($offset);
@@ -67,6 +69,7 @@ final class Group implements GroupInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->route->offsetSet($offset, $value);
@@ -74,6 +77,7 @@ final class Group implements GroupInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $this->route->offsetUnset($offset);

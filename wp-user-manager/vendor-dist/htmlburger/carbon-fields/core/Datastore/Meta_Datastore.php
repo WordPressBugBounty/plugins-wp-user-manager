@@ -19,7 +19,7 @@ abstract class Meta_Datastore extends Key_Value_Datastore
      *
      * @param Field $field The field to retrieve value for.
      * @param array $storage_key_patterns
-     * @return array<stdClass> Array of {key, value} objects
+     * @return \stdClass[] Array of {key, value} objects
      */
     protected function get_storage_array(Field $field, $storage_key_patterns)
     {
@@ -43,6 +43,7 @@ abstract class Meta_Datastore extends Key_Value_Datastore
      */
     protected function save_key_value_pair($key, $value)
     {
+        $value = wp_slash($value);
         if (!update_metadata($this->get_meta_type(), $this->get_object_id(), $key, $value)) {
             add_metadata($this->get_meta_type(), $this->get_object_id(), $key, $value, \true);
         }
@@ -55,7 +56,7 @@ abstract class Meta_Datastore extends Key_Value_Datastore
     public function delete(Field $field)
     {
         global $wpdb;
-        $storage_key_patterns = $this->key_toolset->get_storage_key_deleter_patterns(\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Complex_Field'), $field->is_simple_root_field(), $this->get_full_hierarchy_for_field($field), $this->get_full_hierarchy_index_for_field($field));
+        $storage_key_patterns = $this->key_toolset->get_storage_key_deleter_patterns($field instanceof \WPUM\Carbon_Fields\Field\Complex_Field, $field->is_simple_root_field(), $this->get_full_hierarchy_for_field($field), $this->get_full_hierarchy_index_for_field($field));
         $storage_key_comparisons = $this->key_toolset->storage_key_patterns_to_sql('`meta_key`', $storage_key_patterns);
         $meta_keys = $wpdb->get_col('
 			SELECT `meta_key`

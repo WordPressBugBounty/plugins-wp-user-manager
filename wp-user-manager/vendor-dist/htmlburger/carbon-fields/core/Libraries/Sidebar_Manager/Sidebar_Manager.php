@@ -74,7 +74,7 @@ class Sidebar_Manager
      * @see Sidebar_Manager::register_sidebars()
      * @param string $id Sidebar ID
      * @param string $name Sidebar Name
-     * @return bool|WP_Error
+     * @return array|\WP_Error
      */
     public function add_sidebar($name, $id = '')
     {
@@ -97,7 +97,7 @@ class Sidebar_Manager
      *
      * @see Sidebar_Manager::register_sidebars()
      * @param string $id Sidebar ID
-     * @return bool|WP_Error
+     * @return bool|\WP_Error
      */
     public function remove_sidebar($id)
     {

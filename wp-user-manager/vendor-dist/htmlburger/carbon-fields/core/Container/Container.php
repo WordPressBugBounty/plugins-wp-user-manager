@@ -32,6 +32,11 @@ abstract class Container implements Datastore_Holder_Interface
      */
     const HIERARCHY_GROUP_SEPARATOR = ':';
     /**
+     * Visual layout type constants
+     */
+    const LAYOUT_TABBED_HORIZONTAL = 'tabbed-horizontal';
+    const LAYOUT_TABBED_VERTICAL = 'tabbed-vertical';
+    /**
      * Stores if the container is active on the current page
      *
      * @see activate()
@@ -46,6 +51,12 @@ abstract class Container implements Datastore_Holder_Interface
      */
     protected $registered_field_names = array();
     /**
+     * Complex field layout
+     *
+     * @var string static::LAYOUT_* constant
+     */
+    protected $layout = self::LAYOUT_TABBED_HORIZONTAL;
+    /**
      * Tabs available
      */
     protected $tabs = array();
@@ -57,11 +68,23 @@ abstract class Container implements Datastore_Holder_Interface
      */
     public $settings = array();
     /**
+     * Unique ID of the container
+     *
+     * @var string
+     */
+    public $id;
+    /**
      * Title of the container
      *
      * @var string
      */
     public $title = '';
+    /**
+     * Type of the container
+     *
+     * @var string
+     */
+    public $type;
     /**
      * List of notification messages to be displayed on the front-end
      *
@@ -94,7 +117,7 @@ abstract class Container implements Datastore_Holder_Interface
      *
      * @see set_datastore()
      * @see get_datastore()
-     * @var object
+     * @var Datastore_Interface
      */
     protected $datastore;
     /**
@@ -114,7 +137,7 @@ abstract class Container implements Datastore_Holder_Interface
     /**
      * Translator to use when translating conditions to json
      *
-     * @var Carbon_Fields\Container\Fulfillable\Translator\Translator
+     * @var \Carbon_Fields\Container\Fulfillable\Translator\Translator
      */
     protected $condition_translator;
     /**
@@ -168,7 +191,7 @@ abstract class Container implements Datastore_Holder_Interface
      */
     public static function make()
     {
-        return \call_user_func_array(array(\get_class(), 'factory'), \func_get_args());
+        return \call_user_func_array(array(static::class, 'factory'), \func_get_args());
     }
     /**
      * Create a new container
@@ -177,7 +200,7 @@ abstract class Container implements Datastore_Holder_Interface
      * @param string                 $title                Title of the container
      * @param string                 $type                 Type of the container
      * @param Fulfillable_Collection $condition_collection
-     * @param Carbon_Fields\Container\Fulfillable\Translator\Translator $condition_translator
+     * @param \Carbon_Fields\Container\Fulfillable\Translator\Translator $condition_translator
      */
     public function __construct($id, $title, $type, $condition_collection, $condition_translator)
     {
@@ -405,7 +428,7 @@ abstract class Container implements Datastore_Holder_Interface
      * Returns the private container array of fields.
      * Use only if you are completely aware of what you are doing.
      *
-     * @return array
+     * @return Field[]
      */
     public function get_fields()
     {
@@ -487,7 +510,7 @@ abstract class Container implements Datastore_Holder_Interface
                     $field = clone $f;
                     $field->set_hierarchy_index($hierarchy_index);
                 } else {
-                    if (!\is_a($f, 'WPUM\\Carbon_Fields\\Field\\Complex_Field')) {
+                    if (!$f instanceof \WPUM\Carbon_Fields\Field\Complex_Field) {
                         return null;
                     }
                     $group = $f->get_group_by_name($segment_group_name);
@@ -531,6 +554,7 @@ abstract class Container implements Datastore_Holder_Interface
      * Set datastore instance
      *
      * @param Datastore_Interface $datastore
+     * @param bool                $set_as_default (optional)
      * @return Container $this
      */
     public function set_datastore(Datastore_Interface $datastore, $set_as_default = \false)
@@ -646,7 +670,7 @@ abstract class Container implements Datastore_Holder_Interface
     {
         $untabbed_fields = $this->get_untabbed_fields();
         if (!empty($untabbed_fields)) {
-            $this->create_tab(__('General', 'carbon-fields'), $untabbed_fields, static::TABS_HEAD);
+            $this->create_tab(apply_filters('carbon_fields_untabbed_fields_tab_title', __('General', 'carbon-fields'), $this), $untabbed_fields, static::TABS_HEAD);
         }
         return $this->tabs;
     }
@@ -696,7 +720,7 @@ abstract class Container implements Datastore_Holder_Interface
     {
         $conditions = $this->condition_collection->evaluate($this->get_condition_types(\true), $this->get_environment_for_request(), array('CUSTOM'));
         $conditions = $this->condition_translator->fulfillable_to_foreign($conditions);
-        $container_data = array('id' => $this->get_id(), 'type' => $this->type, 'title' => $this->title, 'classes' => $this->get_classes(), 'settings' => $this->settings, 'conditions' => $conditions, 'fields' => array(), 'nonce' => array('name' => $this->get_nonce_name(), 'value' => $this->get_nonce_value()));
+        $container_data = array('id' => $this->get_id(), 'type' => $this->type, 'title' => $this->title, 'layout' => $this->layout, 'classes' => $this->get_classes(), 'settings' => $this->settings, 'conditions' => $conditions, 'fields' => array(), 'nonce' => array('name' => $this->get_nonce_name(), 'value' => $this->get_nonce_value()));
         $fields = $this->get_fields();
         foreach ($fields as $field) {
             $field_data = $field->to_json($load);
@@ -720,7 +744,7 @@ abstract class Container implements Datastore_Holder_Interface
     public function add_fields($fields)
     {
         foreach ($fields as $field) {
-            if (!\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Field')) {
+            if (!$field instanceof Field) {
                 Incorrect_Syntax_Exception::raise('WPUM\\Object must be of type Carbon_Fields\\Field\\Field');
                 return $this;
             }
@@ -769,6 +793,23 @@ abstract class Container implements Datastore_Holder_Interface
     public function or_where()
     {
         \call_user_func_array(array($this->condition_collection, 'or_where'), \func_get_args());
+        return $this;
+    }
+    /**
+     * Modify the layout of this field.
+     *
+     * @param  string $layout
+     * @return self   $this
+     */
+    public function set_layout($layout)
+    {
+        $available_layouts = array(static::LAYOUT_TABBED_HORIZONTAL, static::LAYOUT_TABBED_VERTICAL);
+        if (!\in_array($layout, $available_layouts)) {
+            $error_message = 'Incorrect layout ``' . $layout . '" specified. ' . 'Available layouts: ' . \implode(', ', $available_layouts);
+            Incorrect_Syntax_Exception::raise($error_message);
+            return $this;
+        }
+        $this->layout = $layout;
         return $this;
     }
 }

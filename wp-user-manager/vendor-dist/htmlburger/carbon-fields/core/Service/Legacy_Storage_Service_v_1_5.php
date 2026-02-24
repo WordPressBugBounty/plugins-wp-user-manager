@@ -8,7 +8,6 @@ use WPUM\Carbon_Fields\Container\Repository as ContainerRepository;
 use WPUM\Carbon_Fields\Value_Set\Value_Set;
 use WPUM\Carbon_Fields\Toolset\Key_Toolset;
 use WPUM\Carbon_Fields\Datastore\Datastore_Interface;
-use WPUM\Carbon_Fields\Exception\Incorrect_Syntax_Exception;
 /*
  * Service which provides the ability to do meta queries for multi-value fields and nested fields
  */
@@ -42,6 +41,7 @@ class Legacy_Storage_Service_v_1_5 extends Service
      * Service constructor
      *
      * @param ContainerRepository $container_repository
+     * @param Key_Toolset         $key_toolset
      */
     public function __construct(ContainerRepository $container_repository, Key_Toolset $key_toolset)
     {
@@ -102,7 +102,7 @@ class Legacy_Storage_Service_v_1_5 extends Service
     {
         $permutations = array();
         foreach ($fields as $field) {
-            if (\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Complex_Field')) {
+            if ($field instanceof \WPUM\Carbon_Fields\Field\Complex_Field) {
                 $group_names = $field->get_group_names();
                 foreach ($group_names as $group_name) {
                     $group = $field->get_group_by_name($group_name);
@@ -127,13 +127,13 @@ class Legacy_Storage_Service_v_1_5 extends Service
     {
         global $wpdb;
         $details = array('prefix' => '_', 'table_name' => '', 'table_id_column' => '', 'table_key_column' => '', 'table_value_column' => '');
-        if (\is_a($datastore, 'WPUM\\Carbon_Fields\\Datastore\\Theme_Options_Datastore')) {
+        if ($datastore instanceof \WPUM\Carbon_Fields\Datastore\Theme_Options_Datastore) {
             $details['prefix'] = '';
             $details['table_name'] = $wpdb->options;
             $details['table_key_column'] = 'option_name';
             $details['table_value_column'] = 'option_value';
         } else {
-            if (\is_a($datastore, 'WPUM\\Carbon_Fields\\Datastore\\Meta_Datastore')) {
+            if ($datastore instanceof \WPUM\Carbon_Fields\Datastore\Meta_Datastore) {
                 $details['table_name'] = $datastore->get_table_name();
                 $details['table_id_column'] = $datastore->get_table_field_name();
                 $details['table_key_column'] = 'meta_key';
@@ -154,7 +154,7 @@ class Legacy_Storage_Service_v_1_5 extends Service
     {
         $field_key_pattern = $key_prefix . $field->get_base_name();
         $comparisons = array();
-        if (\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Complex_Field')) {
+        if ($field instanceof \WPUM\Carbon_Fields\Field\Complex_Field) {
             $groups = $field->get_group_names();
             foreach ($groups as $group_name) {
                 $underscored_group_name = \preg_replace('/^_{0,1}/', '_', $group_name);
@@ -164,7 +164,7 @@ class Legacy_Storage_Service_v_1_5 extends Service
         } else {
             $comparisons[] = ' `' . $key_column . '` = "' . esc_sql($field_key_pattern) . '" ';
         }
-        if (\is_a($field, 'WPUM\\Carbon_Fields\\Field\\Map_Field')) {
+        if ($field instanceof \WPUM\Carbon_Fields\Field\Map_Field) {
             foreach ($this->map_keys as $map_key) {
                 $comparisons[] = ' `' . $key_column . '` = "' . esc_sql($field_key_pattern . '-' . $map_key) . '" ';
             }

@@ -10,7 +10,7 @@ class Date_Field extends Field
     /**
      * {@inheritDoc}
      */
-    protected $allowed_attributes = array('placeholder');
+    protected $allowed_attributes = array('placeholder', 'autocomplete');
     /**
      * The storage format for use in PHP
      *
@@ -34,7 +34,7 @@ class Date_Field extends Field
      *
      * @var array
      */
-    protected $picker_options = array('allowInput' => \true);
+    protected $picker_options = array('allowInput' => \true, 'altInput' => \true, 'altFormat' => "j M Y");
     /**
      * {@inheritDoc}
      */
@@ -42,7 +42,7 @@ class Date_Field extends Field
     {
         if (isset($input[$this->get_name()])) {
             $date = \DateTime::createFromFormat($this->input_format_php, $input[$this->get_name()]);
-            $value = \is_a($date, 'DateTime') ? $date->format($this->storage_format) : '';
+            $value = $date instanceof \DateTime ? $date->format($this->storage_format) : '';
             $this->set_value($value);
         } else {
             $this->clear_value();
@@ -58,7 +58,7 @@ class Date_Field extends Field
         $value = $this->get_value();
         if (!empty($value)) {
             $date = \DateTime::createFromFormat($this->storage_format, $value);
-            $value = \is_a($date, 'DateTime') ? $date->format($this->input_format_php) : '';
+            $value = $date instanceof \DateTime ? $date->format($this->input_format_php) : '';
         }
         $field_data = \array_merge($field_data, array('value' => $value, 'storage_format' => $this->get_storage_format(), 'picker_options' => \array_merge($this->get_picker_options(), array('dateFormat' => $this->input_format_js))));
         return $field_data;
@@ -70,6 +70,10 @@ class Date_Field extends Field
      */
     public function get_storage_format()
     {
+        if ($this->get_context() === 'block') {
+            $this->input_format_js = "Y-m-d h:i:S K";
+            return "Y-m-d H:i:s";
+        }
         return $this->storage_format;
     }
     /**
@@ -86,7 +90,9 @@ class Date_Field extends Field
     /**
      * Get the expected input format in php and js variants
      *
-     * @return array
+     * @param string $php_format
+     * @param string $js_format
+     * @return self $this
      */
     public function get_input_format($php_format, $js_format)
     {

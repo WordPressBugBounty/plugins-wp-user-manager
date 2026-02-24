@@ -53,6 +53,7 @@ final class RouteFilterIterator extends \FilterIterator
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function accept()
     {
         /** @var RouteInterface $route */

@@ -586,7 +586,7 @@ trait Creator
      *
      * @return static|false
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public static function createFromFormat($format, $time, $tz = null)
     {
         $function = static::$createFromFormatFunction;
@@ -720,7 +720,7 @@ trait Creator
      *
      * @return array
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public static function getLastErrors()
     {
         return static::$lastErrors;

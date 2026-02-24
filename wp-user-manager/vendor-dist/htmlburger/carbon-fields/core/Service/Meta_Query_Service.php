@@ -54,6 +54,9 @@ class Meta_Query_Service extends Service
     /**
      * Recursive function to replace meta keys in meta_query arrays
      *
+     * @param $condition
+     * @param $container_type
+     *
      * @return array
      */
     protected function filter_meta_query_array($condition, $container_type)
@@ -87,6 +90,9 @@ class Meta_Query_Service extends Service
         if (\strpos($sql['where'], static::META_KEY_PREFIX) !== \false) {
             $sql['where'] = \preg_replace($this->get_meta_key_replace_regex(), '$1 LIKE $2', $sql['where']);
         }
+        if (\strpos($sql['join'], static::META_KEY_PREFIX) !== \false) {
+            $sql['join'] = \str_replace(static::META_KEY_PREFIX, '', $sql['join']);
+        }
         return $sql;
     }
     /**************************************************
@@ -94,6 +100,8 @@ class Meta_Query_Service extends Service
      **************************************************/
     /**
      * Hook to pre_get_posts to filter the meta_query array
+     *
+     * @param \WP_Query $query
      */
     public function hook_pre_get_posts($query)
     {
@@ -108,6 +116,8 @@ class Meta_Query_Service extends Service
      **************************************************/
     /**
      * Hook to pre_get_terms to filter the meta_query array
+     *
+     * @param \WP_Query $query
      */
     public function hook_pre_get_terms($query)
     {
@@ -122,6 +132,8 @@ class Meta_Query_Service extends Service
      **************************************************/
     /**
      * Hook to pre_get_users to filter the meta_query array
+     *
+     * @param \WP_Query $query
      */
     public function hook_pre_get_users($query)
     {

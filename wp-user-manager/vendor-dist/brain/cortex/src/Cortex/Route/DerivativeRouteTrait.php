@@ -38,6 +38,7 @@ trait DerivativeRouteTrait
      * @param  string $offset
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->route->offsetExists($offset);
@@ -47,6 +48,7 @@ trait DerivativeRouteTrait
      * @param  string $offset
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->route->offsetGet($offset);
@@ -56,6 +58,7 @@ trait DerivativeRouteTrait
      * @param string $offset
      * @param mixed  $value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->route->offsetSet($offset, $value);
@@ -64,6 +67,7 @@ trait DerivativeRouteTrait
      * @see RouteInterface::offsetUnset()
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $this->route->offsetUnset($offset);

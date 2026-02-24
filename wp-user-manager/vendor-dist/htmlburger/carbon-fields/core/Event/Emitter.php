@@ -4,11 +4,12 @@ namespace WPUM\Carbon_Fields\Event;
 
 class Emitter
 {
+    /**
+     * @var Listener[]
+     */
     protected $listeners = array();
     /**
      * Broadcast an event
-     *
-     * @return mixed
      */
     public function emit()
     {
@@ -57,6 +58,7 @@ class Emitter
             return;
         }
         $this->listeners[$event] = \array_filter($listeners, function ($listener) {
+            /** @var Listener $listener */
             return $listener->is_valid();
         });
     }
@@ -64,6 +66,7 @@ class Emitter
      * Add a listener to an event
      *
      * @param string   $event
+     * @param Listener $listener
      * @return Listener $listener
      */
     public function add_listener($event, $listener)
