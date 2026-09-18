@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.9.18\n"
+"Project-Id-Version: WP User Manager 2.9.19\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-05-30 09:33:47+00:00\n"
+"POT-Creation-Date: 2026-09-18 10:53:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,7 +121,7 @@ msgid ""
 msgstr ""
 
 #: includes/abstracts/class-wpum-field-type.php:267
-#: includes/admin/class-wpum-options-panel.php:295
+#: includes/admin/class-wpum-options-panel.php:301
 msgid "Allowed Roles"
 msgstr ""
 
@@ -786,333 +786,343 @@ msgid ""
 "being locked."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:251
+#: includes/admin/class-wpum-options-panel.php:249
+msgid "Generic Login Error"
+msgstr ""
+
+#: includes/admin/class-wpum-options-panel.php:250
+msgid ""
+"Replace specific login error messages with a generic message to prevent "
+"username enumeration."
+msgstr ""
+
+#: includes/admin/class-wpum-options-panel.php:257
 msgid "Admin Bar"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:252
+#: includes/admin/class-wpum-options-panel.php:258
 msgid "Hide WordPress admin bar for specific user roles."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:255
-#: includes/admin/class-wpum-options-panel.php:264
-#: includes/admin/class-wpum-options-panel.php:299
+#: includes/admin/class-wpum-options-panel.php:261
+#: includes/admin/class-wpum-options-panel.php:270
+#: includes/admin/class-wpum-options-panel.php:305
 msgid "Select one or more user roles"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:260
+#: includes/admin/class-wpum-options-panel.php:266
 msgid "Restrict Dashboard Access"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:261
+#: includes/admin/class-wpum-options-panel.php:267
 msgid ""
 "Restrict access to the WordPress dashboard for specific user roles. "
 "Administrators will always have access."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:269
+#: includes/admin/class-wpum-options-panel.php:275
 msgid "Excluded Usernames"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:270
+#: includes/admin/class-wpum-options-panel.php:276
 msgid ""
 "Enter the usernames that you wish to disable. Separate each username on a "
 "new line."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:275
+#: includes/admin/class-wpum-options-panel.php:281
 msgid "Roles Editor"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:276
+#: includes/admin/class-wpum-options-panel.php:282
 msgid "Enable the roles editor in the Users menu."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:281
+#: includes/admin/class-wpum-options-panel.php:287
 msgid "Allow Multiple Roles"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:282
+#: includes/admin/class-wpum-options-panel.php:288
 msgid "Users can be assigned multiple roles."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:289
+#: includes/admin/class-wpum-options-panel.php:295
 msgid "Allow Role Section"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:290
+#: includes/admin/class-wpum-options-panel.php:296
 msgid "Enable to allow users to select a user role on registration."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:296
+#: includes/admin/class-wpum-options-panel.php:302
 msgid "Select which roles can be selected upon registration."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:308
+#: includes/admin/class-wpum-options-panel.php:314
 msgid "Login After Registration"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:309
+#: includes/admin/class-wpum-options-panel.php:315
 msgid "Enable this option to automatically authenticate users after registration."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:314
+#: includes/admin/class-wpum-options-panel.php:320
 msgid "Enable Terms & Conditions"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:315
+#: includes/admin/class-wpum-options-panel.php:321
 msgid "Enable to force users to agree to your terms before registering an account."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:320
+#: includes/admin/class-wpum-options-panel.php:326
 msgid "Terms Page"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:321
+#: includes/admin/class-wpum-options-panel.php:327
 msgid "Select the page that contains your terms."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:333
+#: includes/admin/class-wpum-options-panel.php:339
 msgid "From Name"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:334
+#: includes/admin/class-wpum-options-panel.php:340
 msgid ""
 "The name emails are said to come from. This should probably be your site "
 "name."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:340
+#: includes/admin/class-wpum-options-panel.php:346
 msgid "From Email"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:341
+#: includes/admin/class-wpum-options-panel.php:347
 msgid "This will act as the \"from\" and \"reply-to\" address."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:347
+#: includes/admin/class-wpum-options-panel.php:353
 msgid "Email Template"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:348
+#: includes/admin/class-wpum-options-panel.php:354
 msgid "Select the email template you wish to use for all emails sent by WPUM."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:355
+#: includes/admin/class-wpum-options-panel.php:361
 msgid "Logo"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:356
+#: includes/admin/class-wpum-options-panel.php:362
 msgid ""
 "Upload or choose a logo to be displayed at the top of emails. Displayed on "
 "HTML emails only."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:363
+#: includes/admin/class-wpum-options-panel.php:369
 msgid "Disable Admin Registration Email"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:364
+#: includes/admin/class-wpum-options-panel.php:370
 msgid ""
 "Enable this option to stop receiving notifications when a new user "
 "registers."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:369
+#: includes/admin/class-wpum-options-panel.php:375
 msgid "Disable Admin Password Recovery Email"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:370
+#: includes/admin/class-wpum-options-panel.php:376
 msgid ""
 "Enable this option to stop receiving notifications when user resets their "
 "password."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:377
+#: includes/admin/class-wpum-options-panel.php:383
 msgid "Disable User Profiles"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:378
+#: includes/admin/class-wpum-options-panel.php:384
 msgid "Enable this option to disable frontend user profiles."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:383
+#: includes/admin/class-wpum-options-panel.php:389
 msgid "Custom Avatars"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:384
+#: includes/admin/class-wpum-options-panel.php:390
 msgid ""
 "Enable this option to allow users to upload custom avatars for their "
 "profiles."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:389
+#: includes/admin/class-wpum-options-panel.php:395
 msgid "Default Avatar"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:390
+#: includes/admin/class-wpum-options-panel.php:396
 msgid ""
 "Select a default image to be used for users who don't have a custom avatar "
 "or Gravatar registered with their email address."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:395
+#: includes/admin/class-wpum-options-panel.php:401
 msgid "Disable Profile Cover Image"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:396
+#: includes/admin/class-wpum-options-panel.php:402
 msgid ""
 "Enable this option to prevent users from uploading a custom profile cover "
 "image."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:401
+#: includes/admin/class-wpum-options-panel.php:407
 msgid "Disable Strong Passwords"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:402
+#: includes/admin/class-wpum-options-panel.php:408
 msgid ""
 "Enable this option to disable the built-in strong passwords validation "
 "system of WP User Manager."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:407
+#: includes/admin/class-wpum-options-panel.php:413
 msgid "Default Display Name"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:408
+#: includes/admin/class-wpum-options-panel.php:414
 msgid ""
 "Select the default format for the user display name at registration. The "
 "user can change their display name later in their account."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:415
+#: includes/admin/class-wpum-options-panel.php:421
 msgid "Obfuscate Display Name Emails"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:416
+#: includes/admin/class-wpum-options-panel.php:422
 msgid ""
 "When usernames are email addresses, and username is the used as the display "
 "name, partially obfuscate email addresses for privacy."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:423
+#: includes/admin/class-wpum-options-panel.php:429
 msgid "Display Posts"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:424
+#: includes/admin/class-wpum-options-panel.php:430
 msgid "Enable this option to display users submitted post on their profile page."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:429
+#: includes/admin/class-wpum-options-panel.php:435
 msgid "Display Comments"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:430
+#: includes/admin/class-wpum-options-panel.php:436
 msgid ""
 "Enable this option to display users submitted comments on their profile "
 "page."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:435
+#: includes/admin/class-wpum-options-panel.php:441
 msgid "Number of Comments"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:436
+#: includes/admin/class-wpum-options-panel.php:442
 msgid "The default number of comments displayed in profile page."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:448
+#: includes/admin/class-wpum-options-panel.php:454
 msgid "Require Current Password"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:449
+#: includes/admin/class-wpum-options-panel.php:455
 msgid "Ask user for current password when resetting password on the account page"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:456
+#: includes/admin/class-wpum-options-panel.php:462
 msgid "Allow Guests to View Profiles"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:457
+#: includes/admin/class-wpum-options-panel.php:463
 msgid "Enable this option to allow guests to view users profiles."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:462
+#: includes/admin/class-wpum-options-panel.php:468
 msgid "Allow Members to View Profiles"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:463
+#: includes/admin/class-wpum-options-panel.php:469
 msgid ""
 "Enable this option to allow members to view users profiles. If disabled, "
 "users can only see their own profile."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:468
+#: includes/admin/class-wpum-options-panel.php:474
 msgid "Allow Members to set their profile privacy"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:469
+#: includes/admin/class-wpum-options-panel.php:475
 msgid ""
 "Adds a Privacy account tab where members can override the global settings "
 "above."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:476
+#: includes/admin/class-wpum-options-panel.php:482
 msgid "After Login"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:477
+#: includes/admin/class-wpum-options-panel.php:483
 msgid ""
 "Select the page where you want to redirect users after they login. If empty "
 "it will reload the login page."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:483
+#: includes/admin/class-wpum-options-panel.php:489
 msgid "After Logout"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:484
+#: includes/admin/class-wpum-options-panel.php:490
 msgid ""
 "Select the page where you want to redirect users after they logout. If "
 "empty will return to wp-login.php"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:490
+#: includes/admin/class-wpum-options-panel.php:496
 msgid "After Registration"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:491
+#: includes/admin/class-wpum-options-panel.php:497
 msgid ""
 "Select the page where you want to redirect users after they successfully "
 "register. If empty a message will be displayed instead."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:499
+#: includes/admin/class-wpum-options-panel.php:505
 msgid "Backend Register"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:500
+#: includes/admin/class-wpum-options-panel.php:506
 msgid ""
 "Select a page if you wish to redirect users who try to signup through "
 "wp-login.php"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:506
+#: includes/admin/class-wpum-options-panel.php:512
 msgid "Backend lost password"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:507
+#: includes/admin/class-wpum-options-panel.php:513
 msgid ""
 "Select a page if you wish to redirect users who try to recover a lost "
 "password through wp-login.php"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:513
+#: includes/admin/class-wpum-options-panel.php:519
 msgid "Backend Profile"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:514
+#: includes/admin/class-wpum-options-panel.php:520
 msgid ""
 "Select the page where you want to redirect users who try to access their "
 "profile on the backend."
@@ -2370,6 +2380,10 @@ msgstr ""
 msgid "Invalid email address or incorrect password."
 msgstr ""
 
+#: includes/filters.php:216
+msgid "<strong>Error:</strong> The username or password you entered is incorrect."
+msgstr ""
+
 #: includes/forms/class-wpum-form-login.php:61
 msgid "Login Details"
 msgstr ""
@@ -2998,7 +3012,7 @@ msgstr ""
 msgid "Payment successfully completed."
 msgstr ""
 
-#: includes/integrations/stripe/Connect.php:195
+#: includes/integrations/stripe/Connect.php:199
 #. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor
 #. tag, do not translate.
 msgid ""
@@ -3036,61 +3050,61 @@ msgstr ""
 msgid "Missing form"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:68
+#: includes/integrations/stripe/Settings.php:69
 msgid "Gateway Mode"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:72
+#: includes/integrations/stripe/Settings.php:73
 msgid "Test"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:73
+#: includes/integrations/stripe/Settings.php:74
 msgid "Live"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:77
+#: includes/integrations/stripe/Settings.php:78
 msgid "Connect to your Stripe account to get started."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:80
+#: includes/integrations/stripe/Settings.php:81
 #. translators: %1$d Stripe application fee percentage. %2$s documentation URL.
 msgid ""
 "Pay as you go pricing: %1$d%% per-transaction fee + Stripe fees. <a "
 "target=\"_blank\" href=\"%2$s\">Learn more</a>."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:85
-#: includes/integrations/stripe/Settings.php:133
+#: includes/integrations/stripe/Settings.php:86
+#: includes/integrations/stripe/Settings.php:134
 msgid "Connect to Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:108
-#: includes/integrations/stripe/Settings.php:156
+#: includes/integrations/stripe/Settings.php:109
+#: includes/integrations/stripe/Settings.php:157
 msgid "Connection Status"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:180
+#: includes/integrations/stripe/Settings.php:181
 msgid "Test Key"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:189
+#: includes/integrations/stripe/Settings.php:190
 msgid "Test Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:198
+#: includes/integrations/stripe/Settings.php:199
 msgid "Live Key"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:207
+#: includes/integrations/stripe/Settings.php:208
 msgid "Live Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:217
+#: includes/integrations/stripe/Settings.php:218
 msgid "Test Webhook Signing Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:220
-#: includes/integrations/stripe/Settings.php:239
+#: includes/integrations/stripe/Settings.php:221
+#: includes/integrations/stripe/Settings.php:240
 #. translators: %1$s webhook documentation URL. %2$s URL to use in the webhook.
 msgid ""
 "<a target=\"_blank\" href=\"%1$s\">Set up a webhook in Stripe</a> to get "
@@ -3098,32 +3112,32 @@ msgid ""
 "URL:<br><code>%2$s</code>"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:236
+#: includes/integrations/stripe/Settings.php:237
 msgid "Live Webhook Signing Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:255
+#: includes/integrations/stripe/Settings.php:256
 msgid "Stripe ID"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:262
-#: includes/integrations/stripe/Settings.php:282
+#: includes/integrations/stripe/Settings.php:274
+#: includes/integrations/stripe/Settings.php:294
 msgid "Eligible Products"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:334
+#: includes/integrations/stripe/Settings.php:346
 msgid "Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:351
+#: includes/integrations/stripe/Settings.php:363
 msgid "Unable to retrieve account information."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:374
+#: includes/integrations/stripe/Settings.php:386
 msgid "Disconnect"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:384
+#: includes/integrations/stripe/Settings.php:396
 #. translators: %1$s Opening bold tag, do not translate. %2$s Closing bold tag,
 #. do not translate.
 msgid ""
@@ -3132,50 +3146,50 @@ msgid ""
 "in Stripe."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:393
+#: includes/integrations/stripe/Settings.php:405
 #. translators: %1$s Opening link tag, do not translate. %2$s Closing link tag,
 #. do not translate.
 msgid "%1$sRegister a Stripe account%2$s for full access."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:403
+#: includes/integrations/stripe/Settings.php:415
 #. translators: %1$s Opening anchor tag for disconnecting Stripe, do not
 #. translate. %2$s Closing anchor tag, do not translate.
 msgid "%1$sDisconnect this account%2$s."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:467
+#: includes/integrations/stripe/Settings.php:479
 #. translators: %d Stripe application fee percentage.
 msgid "Pay as you go pricing: %d%% per-transaction fee + Stripe fees."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:472
+#: includes/integrations/stripe/Settings.php:484
 msgid "Administrator (Owner)"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:483
+#: includes/integrations/stripe/Settings.php:495
 msgid ""
 "The API keys provided do not match the Stripe Connect account associated "
 "with this installation. If you have manually modified these values after "
 "connecting your account, please reconnect below or update your API keys."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:498
+#: includes/integrations/stripe/Settings.php:510
 msgid "Connect with Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:501
+#: includes/integrations/stripe/Settings.php:513
 msgid ""
 "It is highly recommended to Connect with Stripe for easier setup and "
 "improved security."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:512
+#: includes/integrations/stripe/Settings.php:524
 #. translators: %1$s Stripe payment mode.
 msgid "Your manually managed %1$s mode API keys are valid."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:528
+#: includes/integrations/stripe/Settings.php:540
 #. translators: %1$s Stripe payment mode.
 msgid "Your manually managed %1$s mode API keys are invalid."
 msgstr ""
