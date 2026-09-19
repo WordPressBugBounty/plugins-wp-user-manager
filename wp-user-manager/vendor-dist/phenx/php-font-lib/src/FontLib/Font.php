@@ -33,26 +33,26 @@ class Font
             case "\x00\x01\x00\x00":
             case "true":
             case "typ1":
-                $class = "WPUM\\TrueType\\File";
+                $class = "TrueType\\File";
                 break;
             case "OTTO":
-                $class = "WPUM\\OpenType\\File";
+                $class = "OpenType\\File";
                 break;
             case "wOFF":
-                $class = "WPUM\\WOFF\\File";
+                $class = "WOFF\\File";
                 break;
             case "ttcf":
-                $class = "WPUM\\TrueType\\Collection";
+                $class = "TrueType\\Collection";
                 break;
             // Unknown type or EOT
             default:
                 $magicNumber = \file_get_contents($file, \false, null, 34, 2);
                 if ($magicNumber === "LP") {
-                    $class = "WPUM\\EOT\\File";
+                    $class = "EOT\\File";
                 }
         }
         if ($class) {
-            $class = "FontLib\\{$class}";
+            $class = "WPUM\\FontLib\\{$class}";
             /** @var TrueType\File $obj */
             $obj = new $class();
             $obj->load($file);

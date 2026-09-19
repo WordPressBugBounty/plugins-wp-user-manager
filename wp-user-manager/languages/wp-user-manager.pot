@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.9.19\n"
+"Project-Id-Version: WP User Manager 2.9.20\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-09-18 10:53:21+00:00\n"
+"POT-Creation-Date: 2026-09-19 12:28:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1139,20 +1139,20 @@ msgid ""
 "than \"default\" for profiles to work."
 msgstr ""
 
-#: includes/admin/class-wpum-plugin-updates.php:186
+#: includes/admin/class-wpum-plugin-updates.php:202
 msgid "Upgrade database"
 msgstr ""
 
-#: includes/admin/class-wpum-plugin-updates.php:281
+#: includes/admin/class-wpum-plugin-updates.php:297
 #: includes/fields/wpum-fields-functions.php:25
 msgid "Primary fields"
 msgstr ""
 
-#: includes/admin/class-wpum-plugin-updates.php:557 includes/install.php:141
+#: includes/admin/class-wpum-plugin-updates.php:573 includes/install.php:141
 msgid "Default registration form"
 msgstr ""
 
-#: includes/admin/class-wpum-plugin-updates.php:684
+#: includes/admin/class-wpum-plugin-updates.php:700
 #. translators: %s wp-admin URL
 msgid "Database upgrade completed. <a href=\"%s\">Go back to your admin panel.</a>"
 msgstr ""
@@ -2968,51 +2968,59 @@ msgstr ""
 msgid "Select User Directory"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:131
-#: includes/integrations/stripe/Account.php:146
+#: includes/integrations/stripe/Account.php:133
+#: includes/integrations/stripe/Account.php:148
 msgid "Billing"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:160
+#: includes/integrations/stripe/Account.php:162
 msgid "An active subscription is required."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:166
+#: includes/integrations/stripe/Account.php:168
 msgid "Payment is required for access to the site."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:173
+#: includes/integrations/stripe/Account.php:175
 #. translators: %s the datetime the subscription will cancel.
 msgid "Your plan will be canceled on <strong>%s</strong>."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:260
-#: includes/integrations/stripe/Account.php:293
+#: includes/integrations/stripe/Account.php:262
+#: includes/integrations/stripe/Account.php:295
 msgid "Unknown Error"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:266
+#: includes/integrations/stripe/Account.php:268
 msgid "No subscription"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:272
+#: includes/integrations/stripe/Account.php:274
 msgid "Error creating Stripe session"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:286
+#: includes/integrations/stripe/Account.php:288
 msgid "Unknown plan"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:305
-#: includes/integrations/stripe/Registration.php:269
+#: includes/integrations/stripe/Account.php:307
+#: includes/integrations/stripe/Registration.php:406
 msgid "There has been an issue when registering, please contact the site owner"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:353
+#: includes/integrations/stripe/Account.php:355
 msgid "Payment successfully completed."
 msgstr ""
 
-#: includes/integrations/stripe/Connect.php:199
+#: includes/integrations/stripe/Connect.php:252
+#. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor
+#. tag, do not translate.
+msgid ""
+"This Stripe connection request has expired or was not started from this "
+"site. Please %1$sconnect again%2$s."
+msgstr ""
+
+#: includes/integrations/stripe/Connect.php:264
 #. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor
 #. tag, do not translate.
 msgid ""
@@ -3028,25 +3036,30 @@ msgstr ""
 msgid "Y-m-d"
 msgstr ""
 
-#: includes/integrations/stripe/Registration.php:87
+#: includes/integrations/stripe/Registration.php:103
 msgid "Payment"
 msgstr ""
 
-#: includes/integrations/stripe/Registration.php:104
+#: includes/integrations/stripe/Registration.php:120
 msgid "Stripe Product"
 msgstr ""
 
-#: includes/integrations/stripe/Registration.php:105
+#: includes/integrations/stripe/Registration.php:121
 msgid ""
 "Take payment at registration for this Stripe product. Selecting multiple "
 "products will allow the user to choose at registration."
 msgstr ""
 
-#: includes/integrations/stripe/Registration.php:216
+#: includes/integrations/stripe/Registration.php:230
+#: includes/integrations/stripe/Registration.php:337
+msgid "Please select a valid plan."
+msgstr ""
+
+#: includes/integrations/stripe/Registration.php:317
 msgid "Missing data"
 msgstr ""
 
-#: includes/integrations/stripe/Registration.php:228
+#: includes/integrations/stripe/Registration.php:329
 msgid "Missing form"
 msgstr ""
 
@@ -3748,16 +3761,16 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:163
+#: includes/updates/class-wpum-license.php:166
 #. translators: %1$s wpum addon name
 msgid "%1$s License Key"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:263
+#: includes/updates/class-wpum-license.php:312
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:454
+#: includes/updates/class-wpum-license.php:503
 #. translators: %1$s wpum addon name %2$s plugin details url %3$s thickbox HTML
 #. class names
 msgid ""
@@ -3765,96 +3778,96 @@ msgid ""
 "version %4$s details</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:454
+#: includes/updates/class-wpum-license.php:503
 msgid "View %1$s version %2$s details"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:507
+#: includes/updates/class-wpum-license.php:556
 #. translators: %1$s licenses page URL
 msgid "<a href=\"%1$s\">Activate your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:517
+#: includes/updates/class-wpum-license.php:566
 #. translators: %1$s renewal URL
 msgid "<a href=\"%1$s\" target=\"_blank\">Renew your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:538
+#: includes/updates/class-wpum-license.php:587
 #. translators: %1$s activation URL %2$s wpum addon name
 msgid ""
 "Please <a href=\"%1$s\">activate your license</a> to receive updates and "
 "support for the %2$s addon."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:543
+#: includes/updates/class-wpum-license.php:592
 #. translators: %1$s activation URL
 msgid "Please <a href=\"%1$s\">activate your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:549
-#: includes/updates/class-wpum-license.php:620
+#: includes/updates/class-wpum-license.php:598
+#: includes/updates/class-wpum-license.php:669
 #. translators: %s expiry date
 #. translators: %s expired license date
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:549
-#: includes/updates/class-wpum-license.php:620
+#: includes/updates/class-wpum-license.php:598
+#: includes/updates/class-wpum-license.php:669
 msgid ""
 "<a href=\"%1$s\" target=\"_blank\">Renew your license</a> to get access to "
 "updates and support."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:554
+#: includes/updates/class-wpum-license.php:603
 #. translators: %s wpum contact URL
 msgid ""
 "Your license key has been disabled. <a href=\"%s\" target=\"_blank\">Please "
 "contact support</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:557
-#: includes/updates/class-wpum-license.php:628
+#: includes/updates/class-wpum-license.php:606
+#: includes/updates/class-wpum-license.php:677
 msgid "Invalid license. Please double-check the license and try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:561
+#: includes/updates/class-wpum-license.php:610
 msgid "Your license is not active for this site."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:565
-#: includes/updates/class-wpum-license.php:636
+#: includes/updates/class-wpum-license.php:614
+#: includes/updates/class-wpum-license.php:685
 #. translators: %s wpum addon name
 msgid ""
 "This appears to be an invalid license key for %s. Please double-check the "
 "license and try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:568
+#: includes/updates/class-wpum-license.php:617
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:594
+#: includes/updates/class-wpum-license.php:643
 msgid "License successfully activated."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:596
+#: includes/updates/class-wpum-license.php:645
 msgid "Deactivate license"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:625
+#: includes/updates/class-wpum-license.php:674
 #. translators: %s wpum contact url
 msgid ""
 "Your license key has been disabled. <a href=\"%s\">Please contact "
 "support</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:632
+#: includes/updates/class-wpum-license.php:681
 msgid ""
 "Your license is not active for this site. Please click 'Save Changes' to "
 "activate. "
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:640
+#: includes/updates/class-wpum-license.php:689
 #. translators: %1$s wpum subscription url %2$s wpum purchase history url
 msgid ""
 "Your license key has reached its activation limit. <a target=\"_blank\" "

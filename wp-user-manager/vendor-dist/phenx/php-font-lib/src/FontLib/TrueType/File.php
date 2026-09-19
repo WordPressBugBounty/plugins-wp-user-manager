@@ -184,7 +184,7 @@ class File extends BinaryStream
             return;
         }
         $type = $this->getFontType();
-        $class = "FontLib\\{$type}\\TableDirectoryEntry";
+        $class = "WPUM\\FontLib\\{$type}\\TableDirectoryEntry";
         for ($i = 0; $i < $this->header->data["numTables"]; $i++) {
             /** @var TableDirectoryEntry $entry */
             $entry = new $class($this);
@@ -201,7 +201,7 @@ class File extends BinaryStream
         $this->parseTableEntries();
         if (!self::$raw) {
             $name_canon = \preg_replace("/[^a-z0-9]/", "", \strtolower($tag));
-            $class = "FontLib\\Table\\Type\\{$name_canon}";
+            $class = "WPUM\\FontLib\\Table\\Type\\{$name_canon}";
             if (!isset($this->directory[$tag]) || !@\class_exists($class)) {
                 return;
             }

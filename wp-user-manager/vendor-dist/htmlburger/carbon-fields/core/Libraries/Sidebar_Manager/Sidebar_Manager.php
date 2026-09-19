@@ -29,6 +29,9 @@ class Sidebar_Manager
      */
     public function action_handler()
     {
+        if (!\current_user_can('edit_theme_options') || !\check_ajax_referer('carbon_fields_sidebar', '_wpnonce', \false)) {
+            \wp_send_json(array('success' => \false, 'error' => 'forbidden', 'errorCode' => 'forbidden', 'data' => null), 403);
+        }
         $response = array('success' => \false, 'error' => null, 'errorCode' => null, 'data' => null);
         $input = stripslashes_deep($_POST);
         $action = isset($input['action']) ? $input['action'] : '';
