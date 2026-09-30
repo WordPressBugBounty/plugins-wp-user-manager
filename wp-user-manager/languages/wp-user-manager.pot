@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.9.20\n"
+"Project-Id-Version: WP User Manager 2.9.21\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-09-19 12:28:40+00:00\n"
+"POT-Creation-Date: 2026-09-30 18:17:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgstr ""
 msgid "%s is invalid"
 msgstr ""
 
-#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:585
+#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:600
 #. translators: %1s$ field label %2$s file extension %3$s allowed extensions
 #. translators: %1$s: file label %2$s: file type  %3$s: allowed types
 msgid "\"%1$s\" (filetype %2$s) needs to be one of the following file types: %3$s"
@@ -292,7 +292,7 @@ msgstr ""
 #: includes/filters.php:45
 #: includes/forms/class-wpum-registration-forms-editor.php:169
 #: includes/forms/class-wpum-registration-forms-editor.php:668
-#: includes/functions.php:710
+#: includes/functions.php:725
 #: includes/integrations/elementor/widgets/class-wpum-elementor-widget.php:74
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/AccountPage.php:32
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/GroupDirectory.php:33
@@ -322,13 +322,13 @@ msgstr ""
 msgid "This nickname is already in use by someone else. Nicknames must be unique."
 msgstr ""
 
-#: includes/actions.php:345 includes/functions.php:718
+#: includes/actions.php:345 includes/functions.php:733
 #: templates/profile-card.php:44
 msgid "View Profile"
 msgstr ""
 
 #: includes/actions.php:492 includes/forms/class-wpum-form-privacy.php:77
-#: includes/functions.php:733
+#: includes/functions.php:748
 msgid "Profile Privacy"
 msgstr ""
 
@@ -2247,7 +2247,7 @@ msgstr ""
 
 #: includes/fields/types/class-wpum-field-password.php:35
 #: includes/forms/class-wpum-form-login.php:95
-#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:714
+#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:729
 msgid "Password"
 msgstr ""
 
@@ -2725,30 +2725,30 @@ msgstr ""
 msgid "Email only"
 msgstr ""
 
-#: includes/functions.php:579
+#: includes/functions.php:594
 msgid "Sorry, you are not allowed to upload this file type."
 msgstr ""
 
-#: includes/functions.php:588
+#: includes/functions.php:603
 #. translators: %s: allowed file types
 msgid "Uploaded files need to be one of the following file types: %s"
 msgstr ""
 
-#: includes/functions.php:722 includes/shortcodes/shortcodes.php:147
+#: includes/functions.php:737 includes/shortcodes/shortcodes.php:147
 #: templates/profile-card.php:47 templates/user-overview.php:43
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/LogoutLink.php:50
 msgid "Logout"
 msgstr ""
 
-#: includes/functions.php:904
+#: includes/functions.php:919
 msgid "About"
 msgstr ""
 
-#: includes/functions.php:908
+#: includes/functions.php:923
 msgid "Posts"
 msgstr ""
 
-#: includes/functions.php:912
+#: includes/functions.php:927
 msgid "Comments"
 msgstr ""
 
@@ -2968,47 +2968,47 @@ msgstr ""
 msgid "Select User Directory"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:133
-#: includes/integrations/stripe/Account.php:148
+#: includes/integrations/stripe/Account.php:232
+#: includes/integrations/stripe/Account.php:247
 msgid "Billing"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:162
+#: includes/integrations/stripe/Account.php:261
 msgid "An active subscription is required."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:168
+#: includes/integrations/stripe/Account.php:267
 msgid "Payment is required for access to the site."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:175
+#: includes/integrations/stripe/Account.php:274
 #. translators: %s the datetime the subscription will cancel.
 msgid "Your plan will be canceled on <strong>%s</strong>."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:262
-#: includes/integrations/stripe/Account.php:295
+#: includes/integrations/stripe/Account.php:361
+#: includes/integrations/stripe/Account.php:394
 msgid "Unknown Error"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:268
+#: includes/integrations/stripe/Account.php:367
 msgid "No subscription"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:274
+#: includes/integrations/stripe/Account.php:373
 msgid "Error creating Stripe session"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:288
+#: includes/integrations/stripe/Account.php:387
 msgid "Unknown plan"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:307
+#: includes/integrations/stripe/Account.php:406
 #: includes/integrations/stripe/Registration.php:406
 msgid "There has been an issue when registering, please contact the site owner"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:355
+#: includes/integrations/stripe/Account.php:454
 msgid "Payment successfully completed."
 msgstr ""
 
@@ -4589,27 +4589,27 @@ msgctxt "Post Type Singular Name"
 msgid "Directory"
 msgstr ""
 
-#: includes/functions.php:783
+#: includes/functions.php:798
 msgctxt "Permalink structure"
 msgid "Display user ID"
 msgstr ""
 
-#: includes/functions.php:788
+#: includes/functions.php:803
 msgctxt "Permalink structure"
 msgid "Display username"
 msgstr ""
 
-#: includes/functions.php:793
+#: includes/functions.php:808
 msgctxt "Permalink structure"
 msgid "Display nickname"
 msgstr ""
 
-#: includes/functions.php:789
+#: includes/functions.php:804
 msgctxt "Example of permalink setting"
 msgid "username"
 msgstr ""
 
-#: includes/functions.php:794
+#: includes/functions.php:809
 msgctxt "Example of permalink setting"
 msgid "nickname"
 msgstr ""
