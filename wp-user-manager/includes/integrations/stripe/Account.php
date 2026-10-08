@@ -239,7 +239,7 @@ class Account {
 	/**
 	 * Account content
 	 *
-	 * @throws \Stripe\Exception\ApiErrorException
+	 * @throws \WPUM\Stripe\Exception\ApiErrorException
 	 */
 	public function account_tab_content() {
 		ob_start();
@@ -278,9 +278,11 @@ class Account {
 		do_action( 'wpum_stripe_account_after_notices', $user );
 
 		if ( ( $shouldBeSubscribed && ( ! $user->subscription || ! $user->subscription->active() ) ) || ( ! $shouldBeSubscribed && ! $user->isPaid() ) ) {
+			$allowed_prices = $user->getAllowedPlanIds();
+
 			$plans_data = array(
-				'products'       => $this->products->all(),
-				'allowed_prices' => wpum_get_option( $this->gateway_mode . '_stripe_products', array() ),
+				'products'       => $this->get_products_for_prices( $allowed_prices ),
+				'allowed_prices' => $allowed_prices,
 			);
 			WPUM()->templates
 				->set_template_data( $plans_data )
@@ -312,8 +314,39 @@ class Account {
 	}
 
 	/**
+	 * The Stripe products, with only the given prices, and without products that have none of them.
+	 * Filtered here rather than in the template, so overridden templates can't list other plans.
+	 *
+	 * @param array $price_ids
+	 *
+	 * @return array
+	 * @throws \WPUM\Stripe\Exception\ApiErrorException
+	 */
+	public function get_products_for_prices( $price_ids ) {
+		$products = array();
+		if ( empty( $price_ids ) ) {
+			return $products;
+		}
+
+		foreach ( (array) $this->products->all() as $key => $product ) {
+			if ( empty( $product['prices'] ) ) {
+				continue;
+			}
+
+			$product['prices'] = array_intersect_key( $product['prices'], array_flip( $price_ids ) );
+			if ( empty( $product['prices'] ) ) {
+				continue;
+			}
+
+			$products[ $key ] = $product;
+		}
+
+		return $products;
+	}
+
+	/**
 	 * @return void
-	 * @throws \Stripe\Exception\ApiErrorException
+	 * @throws \WPUM\Stripe\Exception\ApiErrorException
 	 */
 	public function handle_download_invoice() {
 		$id = filter_input( INPUT_GET, 'invoice_id', FILTER_VALIDATE_INT );
@@ -351,7 +384,7 @@ class Account {
 	}
 
 	/**
-	 * @throws \Stripe\Exception\ApiErrorException
+	 * @throws \WPUM\Stripe\Exception\ApiErrorException
 	 */
 	public function handle_manage_billing() {
 		$nonce = filter_input( INPUT_POST, 'nonce', FILTER_UNSAFE_RAW );
@@ -395,6 +428,11 @@ class Account {
 		}
 
 		$user = new User( get_current_user_id() );
+
+		// Only the plans this customer signed up for, not every plan on the site.
+		if ( ! in_array( $plan_id, $user->getAllowedPlanIds(), true ) ) {
+			wp_send_json_error( __( 'Unknown plan', 'wp-user-manager' ) );
+		}
 
 		$form = $user->getFormRegisteredWith();
 

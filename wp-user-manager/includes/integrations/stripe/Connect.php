@@ -9,6 +9,8 @@
 
 namespace WPUserManager\Stripe;
 
+use WPUserManager\Stripe\Controllers\Products;
+
 /**
  * Connect
  */
@@ -98,6 +100,93 @@ class Connect {
 	}
 
 	/**
+	 * Errors the Connect service gives when it can't verify a checkout request, by code.
+	 *
+	 * @return array
+	 */
+	public function get_checkout_error_messages() {
+		return array(
+			'invalid_signature'  => __( 'Stripe Connect could not verify checkout requests from this site, because the Stripe key saved here does not match your Stripe connection. Please disconnect and connect Stripe again.', 'wp-user-manager' ),
+			'signature_expired'  => __( 'Stripe Connect could not verify checkout requests from this site, because the server clock is more than 5 minutes out. Please ask your host to correct the server time.', 'wp-user-manager' ),
+			'signature_required' => __( 'Stripe Connect refused an unsigned checkout request from this site. Please disconnect and connect Stripe again.', 'wp-user-manager' ),
+		);
+	}
+
+	/**
+	 * Record the result of the last checkout request to the Connect service.
+	 *
+	 * @param string $mode 'test' or 'live'.
+	 * @param string $code Error code from the Connect service, or empty if the request was verified.
+	 */
+	public function record_checkout_error( $mode, $code ) {
+		$errors = get_option( 'wpum_stripe_connect_checkout_errors', array() );
+		$errors = is_array( $errors ) ? $errors : array();
+
+		if ( ! isset( $this->get_checkout_error_messages()[ $code ] ) ) {
+			if ( isset( $errors[ $mode ] ) ) {
+				$this->clear_checkout_error( $mode );
+			}
+
+			return;
+		}
+
+		$errors[ $mode ] = array(
+			'code' => $code,
+			'time' => time(),
+		);
+
+		update_option( 'wpum_stripe_connect_checkout_errors', $errors, false );
+
+		/**
+		 * Fires when the Connect service can't verify a checkout request from this site.
+		 *
+		 * @param string $code 'invalid_signature', 'signature_expired' or 'signature_required'.
+		 * @param string $mode 'test' or 'live'.
+		 */
+		do_action( 'wpum_stripe_connect_checkout_error', $code, $mode );
+	}
+
+	/**
+	 * Forget the Connect service checkout error for a mode.
+	 *
+	 * @param string $mode 'test' or 'live'.
+	 */
+	public function clear_checkout_error( $mode ) {
+		$errors = get_option( 'wpum_stripe_connect_checkout_errors', array() );
+		if ( ! is_array( $errors ) || ! isset( $errors[ $mode ] ) ) {
+			return;
+		}
+
+		unset( $errors[ $mode ] );
+
+		if ( empty( $errors ) ) {
+			delete_option( 'wpum_stripe_connect_checkout_errors' );
+
+			return;
+		}
+
+		update_option( 'wpum_stripe_connect_checkout_errors', $errors, false );
+	}
+
+	/**
+	 * The message for the last Connect service checkout error, if the last request failed verification.
+	 *
+	 * @param string $mode 'test' or 'live'.
+	 *
+	 * @return string
+	 */
+	public function get_checkout_error_message( $mode ) {
+		$errors = get_option( 'wpum_stripe_connect_checkout_errors', array() );
+		if ( ! is_array( $errors ) || empty( $errors[ $mode ]['code'] ) ) {
+			return '';
+		}
+
+		$messages = $this->get_checkout_error_messages();
+
+		return isset( $messages[ $errors[ $mode ]['code'] ] ) ? $messages[ $errors[ $mode ]['code'] ] : '';
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function get_site_url() {
@@ -109,11 +198,21 @@ class Connect {
 	}
 
 	/**
+	 * The state for a Connect button. The current user's unused state for this
+	 * mode is reused, since the buttons are built on every settings load,
+	 * including every REST request.
+	 *
 	 * @param false $test_mode
 	 *
 	 * @return string
 	 */
 	protected function get_state( $test_mode = false ) {
+		$mode   = $test_mode ? 'test' : 'live';
+		$issued = $this->get_issued_states();
+		if ( isset( $issued[ $mode ]['state'], $issued[ $mode ]['time'] ) && $issued[ $mode ]['time'] > time() - 12 * HOUR_IN_SECONDS ) {
+			return $issued[ $mode ]['state'];
+		}
+
 		$state = array(
 			'test_mode' => (int) $test_mode,
 			'site_id'   => str_pad( wp_rand( wp_rand(), PHP_INT_MAX ), 10, wp_rand(), STR_PAD_BOTH ),
@@ -122,7 +221,7 @@ class Connect {
 
 		$state = base64_encode( serialize( $state ) ); // phpcs:ignore
 
-		$this->remember_state( $state );
+		$this->remember_state( $mode, $state );
 
 		return $state;
 	}
@@ -137,20 +236,36 @@ class Connect {
 	}
 
 	/**
+	 * The states issued to the current user, by mode.
+	 *
+	 * @return array
+	 */
+	protected function get_issued_states() {
+		$states = get_transient( $this->get_states_transient_key() );
+		if ( ! is_array( $states ) ) {
+			return array();
+		}
+
+		// Before 2.9.23 this held a list of states; only the by-mode entries are reused.
+		return array_intersect_key( $states, array_flip( array( 'test', 'live' ) ) );
+	}
+
+	/**
 	 * Record a state issued to the current user so the callback can be tied to it.
 	 *
+	 * @param string $mode  'test' or 'live'.
 	 * @param string $state
 	 */
-	protected function remember_state( $state ) {
+	protected function remember_state( $mode, $state ) {
 		if ( ! get_current_user_id() ) {
 			return;
 		}
 
-		$states = get_transient( $this->get_states_transient_key() );
-		$states = is_array( $states ) ? $states : array();
-
-		$states[] = $state;
-		$states   = array_slice( $states, -10 );
+		$states          = $this->get_issued_states();
+		$states[ $mode ] = array(
+			'state' => $state,
+			'time'  => time(),
+		);
 
 		set_transient( $this->get_states_transient_key(), $states, DAY_IN_SECONDS );
 	}
@@ -168,11 +283,15 @@ class Connect {
 			return false;
 		}
 
-		// A '+' in the base64 state can arrive as a space once URL-decoded.
-		$state = str_replace( ' ', '+', $state );
+		// A '+' in the base64 state can arrive as a space once URL-decoded, and
+		// add_query_arg() strips a trailing '=' from the Connect URL, so ignore padding.
+		$state = rtrim( str_replace( ' ', '+', $state ), '=' );
 
 		foreach ( $states as $issued ) {
-			if ( is_string( $issued ) && hash_equals( $issued, $state ) ) {
+			// Before 2.9.23 each entry was the state itself.
+			$issued = is_array( $issued ) && isset( $issued['state'] ) ? $issued['state'] : $issued;
+
+			if ( is_string( $issued ) && hash_equals( rtrim( $issued, '=' ), $state ) ) {
 				delete_transient( $this->get_states_transient_key() );
 
 				return true;
@@ -279,7 +398,10 @@ class Connect {
 
 		wpum_update_option( 'stripe_gateway_mode', $gateway_mode );
 
-		delete_transient( 'wpum_' . $gateway_mode . '_stripe_products' );
+		// A new connection has new keys, so an earlier checkout error no longer applies.
+		$this->clear_checkout_error( $gateway_mode );
+
+		Products::forget( $gateway_mode );
 
 		wpum_update_option( 'stripe_connect_account_id', sanitize_text_field( $data['stripe_user_id'] ) );
 		wp_safe_redirect( $this->get_site_url() . '/#stripe' );
