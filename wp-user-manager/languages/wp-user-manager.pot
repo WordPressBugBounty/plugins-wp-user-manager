@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.10.0\n"
+"Project-Id-Version: WP User Manager 2.10.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-10-20 19:47:14+00:00\n"
+"POT-Creation-Date: 2026-10-27 07:31:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -327,42 +327,42 @@ msgstr ""
 msgid "View Profile"
 msgstr ""
 
-#: includes/actions.php:614
+#: includes/actions.php:616
 msgid "You must be logged in to access this site."
 msgstr ""
 
-#: includes/actions.php:636 includes/forms/class-wpum-form-privacy.php:77
+#: includes/actions.php:638 includes/forms/class-wpum-form-privacy.php:77
 #: includes/functions.php:797
 msgid "Profile Privacy"
 msgstr ""
 
-#: includes/actions.php:638
+#: includes/actions.php:640
 msgid "Hide profile from guests"
 msgstr ""
 
-#: includes/actions.php:639
+#: includes/actions.php:641
 msgid "Hide this profile from guests. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:640
+#: includes/actions.php:642
 msgid "Hide profile from members"
 msgstr ""
 
-#: includes/actions.php:641
+#: includes/actions.php:643
 msgid "Hide this profile from members. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:675
+#: includes/actions.php:677
 #: includes/directories/class-wpum-directories-editor.php:311
 #: includes/fields/types/class-wpum-field-userrole.php:72
 msgid "User Roles"
 msgstr ""
 
-#: includes/actions.php:681
+#: includes/actions.php:683
 msgid "Select one or more roles for this user."
 msgstr ""
 
-#: includes/actions.php:1254 includes/shortcodes/shortcodes.php:199
+#: includes/actions.php:1256 includes/shortcodes/shortcodes.php:199
 msgid ""
 "Registration complete. We have sent you a confirmation email with your "
 "details."
