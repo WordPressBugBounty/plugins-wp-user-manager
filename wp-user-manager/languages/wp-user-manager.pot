@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.10.1\n"
+"Project-Id-Version: WP User Manager 2.10.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-10-27 07:31:20+00:00\n"
+"POT-Creation-Date: 2026-10-29 16:52:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgstr ""
 msgid "%s is invalid"
 msgstr ""
 
-#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:649
+#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:659
 #. translators: %1s$ field label %2$s file extension %3$s allowed extensions
 #. translators: %1$s: file label %2$s: file type  %3$s: allowed types
 msgid "\"%1$s\" (filetype %2$s) needs to be one of the following file types: %3$s"
@@ -292,7 +292,7 @@ msgstr ""
 #: includes/filters.php:45
 #: includes/forms/class-wpum-registration-forms-editor.php:157
 #: includes/forms/class-wpum-registration-forms-editor.php:563
-#: includes/functions.php:774
+#: includes/functions.php:784
 #: includes/integrations/elementor/widgets/class-wpum-elementor-widget.php:74
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/AccountPage.php:32
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/GroupDirectory.php:33
@@ -322,47 +322,63 @@ msgstr ""
 msgid "This nickname is already in use by someone else. Nicknames must be unique."
 msgstr ""
 
-#: includes/actions.php:385 includes/functions.php:782
+#: includes/actions.php:422 includes/functions.php:792
 #: templates/profile-card.php:44
 msgid "View Profile"
 msgstr ""
 
-#: includes/actions.php:616
+#: includes/actions.php:453
+msgid "Send password reset (WPUM)"
+msgstr ""
+
+#: includes/actions.php:470
+msgid "Sorry, you are not allowed to send a password reset to this user."
+msgstr ""
+
+#: includes/actions.php:494
+msgid "Password reset email sent."
+msgstr ""
+
+#: includes/actions.php:496 includes/emails/wpum-email-functions.php:221
+msgid "The password reset email could not be sent."
+msgstr ""
+
+#: includes/actions.php:726
 msgid "You must be logged in to access this site."
 msgstr ""
 
-#: includes/actions.php:638 includes/forms/class-wpum-form-privacy.php:77
-#: includes/functions.php:797
+#: includes/actions.php:748 includes/forms/class-wpum-form-privacy.php:77
+#: includes/functions.php:807
 msgid "Profile Privacy"
 msgstr ""
 
-#: includes/actions.php:640
+#: includes/actions.php:750
 msgid "Hide profile from guests"
 msgstr ""
 
-#: includes/actions.php:641
+#: includes/actions.php:751
 msgid "Hide this profile from guests. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:642
+#: includes/actions.php:752
 msgid "Hide profile from members"
 msgstr ""
 
-#: includes/actions.php:643
+#: includes/actions.php:753
 msgid "Hide this profile from members. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:677
+#: includes/actions.php:787
 #: includes/directories/class-wpum-directories-editor.php:311
 #: includes/fields/types/class-wpum-field-userrole.php:72
 msgid "User Roles"
 msgstr ""
 
-#: includes/actions.php:683
+#: includes/actions.php:793
 msgid "Select one or more roles for this user."
 msgstr ""
 
-#: includes/actions.php:1256 includes/shortcodes/shortcodes.php:199
+#: includes/actions.php:1366 includes/shortcodes/shortcodes.php:199
 msgid ""
 "Registration complete. We have sent you a confirmation email with your "
 "details."
@@ -469,95 +485,78 @@ msgstr ""
 msgid "Welcome to WP User Manager %s"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:172
+#: includes/admin/class-wpum-getting-started.php:161
 #. translators: %s WP User Manager version
 msgid ""
 "Thank you for installing the latest version! WP User Manager %s is ready to "
 "provide improved control over your WordPress users."
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:175
-msgid ""
-"Be sure to sign up for the WPUM newsletter below to stay informed of "
-"important updates and news."
-msgstr ""
-
-#: includes/admin/class-wpum-getting-started.php:180
-msgid "Email address*"
-msgstr ""
-
-#: includes/admin/class-wpum-getting-started.php:184
-#: includes/directories/class-wpum-directories-editor.php:224
-#: includes/directories/wpum-directories-functions.php:25
-#: includes/fields/class-wpum-field.php:368
-msgid "First name"
-msgstr ""
-
-#: includes/admin/class-wpum-getting-started.php:207
+#: includes/admin/class-wpum-getting-started.php:170
 #. translators: %s WP User Manager version
 msgid "Version %s"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:213
+#: includes/admin/class-wpum-getting-started.php:176
 msgid ""
 "Use the tips below to get started using WP User Manager. You will be up and "
 "running in no time!"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:219
+#: includes/admin/class-wpum-getting-started.php:182
 msgid "Configure WP User Manager"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:221
+#: includes/admin/class-wpum-getting-started.php:184
 msgid "Setup login method"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:222
+#: includes/admin/class-wpum-getting-started.php:185
 msgid "Setup notifications"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:223
+#: includes/admin/class-wpum-getting-started.php:186
 msgid "Customize email templates"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:227
+#: includes/admin/class-wpum-getting-started.php:190
 msgid "Customize Profiles"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:229
+#: includes/admin/class-wpum-getting-started.php:192
 msgid "Customize profiles"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:230
+#: includes/admin/class-wpum-getting-started.php:193
 #: includes/fields/class-wpum-fields-editor.php:154
 msgid "Customize fields"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:231
+#: includes/admin/class-wpum-getting-started.php:194
 msgid "Create user directories"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:235 includes/filters.php:46
+#: includes/admin/class-wpum-getting-started.php:198 includes/filters.php:46
 msgid "Documentation"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:239
+#: includes/admin/class-wpum-getting-started.php:202
 #. translators: WPUM URL
 msgid ""
 "Looking for help? <a href=\"%s\" target=\"_blank\">WP User Manager "
 "documentation</a> has got you covered."
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:241
+#: includes/admin/class-wpum-getting-started.php:204
 #: includes/admin/class-wpum-options-panel.php:77
 msgid "Read documentation"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:252
+#: includes/admin/class-wpum-getting-started.php:215
 msgid "Looking for help?"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:256
+#: includes/admin/class-wpum-getting-started.php:219
 #. translators: %1$s contact URL %2$s documenation URL
 msgid ""
 "We do all we can to provide every user with the best support possible. If "
@@ -566,21 +565,21 @@ msgid ""
 "documentation</a> first."
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:262
+#: includes/admin/class-wpum-getting-started.php:225
 msgid "Extensions for WP User Manager"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:263
+#: includes/admin/class-wpum-getting-started.php:226
 msgid ""
 "Browse our growing collection of addons built specifically for WPUM to "
 "customize the functionality of your community."
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:264
+#: includes/admin/class-wpum-getting-started.php:227
 msgid "Browse addons"
 msgstr ""
 
-#: includes/admin/class-wpum-getting-started.php:270
+#: includes/admin/class-wpum-getting-started.php:233
 msgid "Go To WP User Manager &rarr; Settings"
 msgstr ""
 
@@ -618,6 +617,70 @@ msgstr ""
 
 #: includes/admin/class-wpum-menus.php:75
 msgid "Select the roles that should see this menu item. Leave blank for all roles."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:181
+msgid "No thanks"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:211
+msgid "Get WP User Manager news by email"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:212
+msgid "Product updates, security notices, new addons and the occasional offer."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:215
+#: includes/admin/class-wpum-newsletter.php:216
+msgid "Email address"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:217
+#: includes/admin/class-wpum-newsletter.php:218
+#: includes/directories/class-wpum-directories-editor.php:224
+#: includes/directories/wpum-directories-functions.php:25
+#: includes/fields/class-wpum-field.php:368
+msgid "First name"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:219
+msgid "Subscribe"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:224
+#. translators: %s privacy policy URL
+msgid ""
+"Clicking Subscribe sends this email address and name to wpusermanager.com. "
+"Unsubscribe at any time. <a href=\"%s\" target=\"_blank\">Privacy policy</a>"
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:230
+msgid "Sorry, that didn't work. Please check the email address and try again."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:252
+#: includes/admin/class-wpum-newsletter.php:284
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:313
+#: includes/forms/wpum-profile-functions.php:39
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:334
+msgid "Sorry, we couldn't reach wpusermanager.com. Please try again later."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:349
+msgid "Sorry, that didn't work. Please try again later."
+msgstr ""
+
+#: includes/admin/class-wpum-newsletter.php:359
+msgid ""
+"Thanks! Check your inbox and click the link in our email to confirm your "
+"subscription."
 msgstr ""
 
 #: includes/admin/class-wpum-options-panel.php:70
@@ -1113,31 +1176,42 @@ msgid ""
 "register. If empty a message will be displayed instead."
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:511
+#: includes/admin/class-wpum-options-panel.php:509
+msgid "Logged In Users"
+msgstr ""
+
+#: includes/admin/class-wpum-options-panel.php:510
+msgid ""
+"Select the page where you want to send users who are already logged in when "
+"they visit the login or registration page. If empty those pages show an "
+"\"already logged in\" message."
+msgstr ""
+
+#: includes/admin/class-wpum-options-panel.php:518
 msgid "Backend Register"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:512
+#: includes/admin/class-wpum-options-panel.php:519
 msgid ""
 "Select a page if you wish to redirect users who try to signup through "
 "wp-login.php"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:518
+#: includes/admin/class-wpum-options-panel.php:525
 msgid "Backend lost password"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:519
+#: includes/admin/class-wpum-options-panel.php:526
 msgid ""
 "Select a page if you wish to redirect users who try to recover a lost "
 "password through wp-login.php"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:525
+#: includes/admin/class-wpum-options-panel.php:532
 msgid "Backend Profile"
 msgstr ""
 
-#: includes/admin/class-wpum-options-panel.php:526
+#: includes/admin/class-wpum-options-panel.php:533
 msgid ""
 "Select the page where you want to redirect users who try to access their "
 "profile on the backend."
@@ -1229,12 +1303,12 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: includes/class-wp-user-manager.php:543
-#: includes/class-wp-user-manager.php:555
+#: includes/class-wp-user-manager.php:544
+#: includes/class-wp-user-manager.php:556
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: includes/class-wp-user-manager.php:651
+#: includes/class-wp-user-manager.php:652
 #. translators: %s: comma separated list of PHP extension names
 msgid ""
 "WP User Manager needs these PHP extensions, which are not enabled on this "
@@ -1843,39 +1917,51 @@ msgstr ""
 msgid "Display a link to the password recovery page."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:327
+#: includes/emails/wpum-email-functions.php:193
+msgid "The user could not be found."
+msgstr ""
+
+#: includes/emails/wpum-email-functions.php:203
+msgid "A password reset key could not be created."
+msgstr ""
+
+#: includes/emails/wpum-email-functions.php:209
+msgid "The password recovery email is not set up."
+msgstr ""
+
+#: includes/emails/wpum-email-functions.php:373
 msgid "Registration confirmation"
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:328
+#: includes/emails/wpum-email-functions.php:374
 msgid "This is the email that is sent to the user upon successful registration."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:329
+#: includes/emails/wpum-email-functions.php:375
 msgid "User's email."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:334
+#: includes/emails/wpum-email-functions.php:380
 msgid "New user notification"
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:335
+#: includes/emails/wpum-email-functions.php:381
 msgid "This is the email sent to the site admin when a new user registers."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:336
+#: includes/emails/wpum-email-functions.php:382
 msgid "Site admin's email."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:341
+#: includes/emails/wpum-email-functions.php:387
 msgid "Password recovery request"
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:342
+#: includes/emails/wpum-email-functions.php:388
 msgid "This is the email that is sent to the visitor upon password reset request."
 msgstr ""
 
-#: includes/emails/wpum-email-functions.php:343
+#: includes/emails/wpum-email-functions.php:389
 msgid "Email address of the requested user."
 msgstr ""
 
@@ -2319,7 +2405,7 @@ msgstr ""
 
 #: includes/fields/types/class-wpum-field-password.php:35
 #: includes/forms/class-wpum-form-login.php:95
-#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:778
+#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:788
 msgid "Password"
 msgstr ""
 
@@ -2491,11 +2577,11 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: includes/filters.php:185
+#: includes/filters.php:191
 msgid "Invalid email address or incorrect password."
 msgstr ""
 
-#: includes/filters.php:224
+#: includes/filters.php:289
 msgid "<strong>Error:</strong> The username or password you entered is incorrect."
 msgstr ""
 
@@ -2551,32 +2637,32 @@ msgid ""
 "receive a link to create a new password via email."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:265
+#: includes/forms/class-wpum-form-password-recovery.php:245
 msgid "Something went wrong."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:325
+#: includes/forms/class-wpum-form-password-recovery.php:305
 msgid ""
 "The reset key is wrong or expired. Please check that you used the right "
 "reset link or request a new one."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:340
+#: includes/forms/class-wpum-form-password-recovery.php:320
 msgid "Enter a new password below."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:351
+#: includes/forms/class-wpum-form-password-recovery.php:331
 msgid ""
 "The link you followed may be broken. Please check that you used the right "
 "reset link or request a new one."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:379
+#: includes/forms/class-wpum-form-password-recovery.php:359
 #: includes/forms/class-wpum-form-password.php:180
 msgid "Error: passwords do not match."
 msgstr ""
 
-#: includes/forms/class-wpum-form-password-recovery.php:477
+#: includes/forms/class-wpum-form-password-recovery.php:457
 #. translators: %s login URL
 msgid "Password successfully reset. <a href=\"%s\">Login now &raquo;</a>"
 msgstr ""
@@ -2827,10 +2913,6 @@ msgstr ""
 msgid "Something went wrong: could not update the registration form details."
 msgstr ""
 
-#: includes/forms/wpum-profile-functions.php:39
-msgid "Please enter a valid email address."
-msgstr ""
-
 #: includes/forms/wpum-profile-functions.php:136
 msgid "The user does not exist."
 msgstr ""
@@ -2897,30 +2979,30 @@ msgstr ""
 msgid "The page could not be saved."
 msgstr ""
 
-#: includes/functions.php:643
+#: includes/functions.php:653
 msgid "Sorry, you are not allowed to upload this file type."
 msgstr ""
 
-#: includes/functions.php:652
+#: includes/functions.php:662
 #. translators: %s: allowed file types
 msgid "Uploaded files need to be one of the following file types: %s"
 msgstr ""
 
-#: includes/functions.php:786 includes/shortcodes/shortcodes.php:147
+#: includes/functions.php:796 includes/shortcodes/shortcodes.php:147
 #: templates/profile-card.php:47 templates/user-overview.php:43
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/LogoutLink.php:50
 msgid "Logout"
 msgstr ""
 
-#: includes/functions.php:968
+#: includes/functions.php:978
 msgid "About"
 msgstr ""
 
-#: includes/functions.php:972
+#: includes/functions.php:982
 msgid "Posts"
 msgstr ""
 
-#: includes/functions.php:976
+#: includes/functions.php:986
 msgid "Comments"
 msgstr ""
 
@@ -3182,12 +3264,17 @@ msgstr ""
 msgid "Unknown plan"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:473
-#: includes/integrations/stripe/Registration.php:406
+#: includes/integrations/stripe/Account.php:467
+#: includes/integrations/stripe/Registration.php:342
+msgid "This plan is no longer available. Please contact the site owner."
+msgstr ""
+
+#: includes/integrations/stripe/Account.php:477
+#: includes/integrations/stripe/Registration.php:411
 msgid "There has been an issue when registering, please contact the site owner"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:521
+#: includes/integrations/stripe/Account.php:525
 msgid "Payment successfully completed."
 msgstr ""
 
@@ -3268,94 +3355,116 @@ msgstr ""
 msgid "Missing form"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:69
+#: includes/integrations/stripe/Settings.php:70
 msgid "Gateway Mode"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:73
+#: includes/integrations/stripe/Settings.php:74
 msgid "Test"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:74
+#: includes/integrations/stripe/Settings.php:75
 msgid "Live"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:78
+#: includes/integrations/stripe/Settings.php:79
 msgid "Connect to your Stripe account to get started."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:81
+#: includes/integrations/stripe/Settings.php:82
 #. translators: %1$d Stripe application fee percentage. %2$s documentation URL.
 msgid ""
 "Pay as you go pricing: %1$d%% per-transaction fee + Stripe fees. <a "
 "target=\"_blank\" href=\"%2$s\">Learn more</a>."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:86
-#: includes/integrations/stripe/Settings.php:134
+#: includes/integrations/stripe/Settings.php:87
+#: includes/integrations/stripe/Settings.php:135
 msgid "Connect to Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:109
-#: includes/integrations/stripe/Settings.php:157
+#: includes/integrations/stripe/Settings.php:110
+#: includes/integrations/stripe/Settings.php:158
 msgid "Connection Status"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:181
+#: includes/integrations/stripe/Settings.php:182
 msgid "Test Key"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:190
+#: includes/integrations/stripe/Settings.php:191
 msgid "Test Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:199
+#: includes/integrations/stripe/Settings.php:200
 msgid "Live Key"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:208
+#: includes/integrations/stripe/Settings.php:209
 msgid "Live Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:218
+#: includes/integrations/stripe/Settings.php:219
 msgid "Test Webhook Signing Secret"
-msgstr ""
-
-#: includes/integrations/stripe/Settings.php:221
-#: includes/integrations/stripe/Settings.php:240
-#. translators: %1$s webhook documentation URL. %2$s URL to use in the webhook.
-msgid ""
-"<a target=\"_blank\" href=\"%1$s\">Set up a webhook in Stripe</a> to get "
-"the webhook signing secret, using all events for this "
-"URL:<br><code>%2$s</code>"
 msgstr ""
 
 #: includes/integrations/stripe/Settings.php:237
 msgid "Live Webhook Signing Secret"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:256
+#: includes/integrations/stripe/Settings.php:255
 msgid "Stripe ID"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:274
-#: includes/integrations/stripe/Settings.php:294
+#: includes/integrations/stripe/Settings.php:273
+#: includes/integrations/stripe/Settings.php:293
 msgid "Eligible Products"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:346
+#: includes/integrations/stripe/Settings.php:315
+msgid "Stripe Products"
+msgstr ""
+
+#: includes/integrations/stripe/Settings.php:316
+msgid ""
+"Fetch the latest products and prices from Stripe, for example after adding "
+"a product."
+msgstr ""
+
+#: includes/integrations/stripe/Settings.php:356
+#. translators: %1$s webhook documentation URL. %2$s URL to use in the webhook.
+#. %3$s list of Stripe events.
+msgid ""
+"<a target=\"_blank\" href=\"%1$s\">Set up a webhook in Stripe</a> (an event "
+"destination) to get the webhook signing secret. Choose the "
+"<strong>Snapshot</strong> payload format, not Thin, and send these events "
+"to this URL:<br><code>%2$s</code><br>%3$s"
+msgstr ""
+
+#: includes/integrations/stripe/Settings.php:389
+#. translators: %1$s Stripe event type. %2$s documentation URL.
+msgid ""
+"<strong>Your Stripe webhook is sending Thin events, which WP User Manager "
+"can't use</strong> (last one: %1$s). Subscriptions, renewals and "
+"cancellations are not reaching this site. In Stripe, create the webhook "
+"again with the <strong>Snapshot</strong> payload format, then paste its new "
+"signing secret here. <a target=\"_blank\" href=\"%2$s\">How to set up the "
+"webhook</a>."
+msgstr ""
+
+#: includes/integrations/stripe/Settings.php:427
 msgid "Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:363
+#: includes/integrations/stripe/Settings.php:444
 msgid "Unable to retrieve account information."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:386
+#: includes/integrations/stripe/Settings.php:467
 msgid "Disconnect"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:396
+#: includes/integrations/stripe/Settings.php:477
 #. translators: %1$s Opening bold tag, do not translate. %2$s Closing bold tag,
 #. do not translate.
 msgid ""
@@ -3364,50 +3473,50 @@ msgid ""
 "in Stripe."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:405
+#: includes/integrations/stripe/Settings.php:486
 #. translators: %1$s Opening link tag, do not translate. %2$s Closing link tag,
 #. do not translate.
 msgid "%1$sRegister a Stripe account%2$s for full access."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:415
+#: includes/integrations/stripe/Settings.php:496
 #. translators: %1$s Opening anchor tag for disconnecting Stripe, do not
 #. translate. %2$s Closing anchor tag, do not translate.
 msgid "%1$sDisconnect this account%2$s."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:489
+#: includes/integrations/stripe/Settings.php:570
 #. translators: %d Stripe application fee percentage.
 msgid "Pay as you go pricing: %d%% per-transaction fee + Stripe fees."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:494
+#: includes/integrations/stripe/Settings.php:575
 msgid "Administrator (Owner)"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:505
+#: includes/integrations/stripe/Settings.php:586
 msgid ""
 "The API keys provided do not match the Stripe Connect account associated "
 "with this installation. If you have manually modified these values after "
 "connecting your account, please reconnect below or update your API keys."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:520
+#: includes/integrations/stripe/Settings.php:601
 msgid "Connect with Stripe"
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:523
+#: includes/integrations/stripe/Settings.php:604
 msgid ""
 "It is highly recommended to Connect with Stripe for easier setup and "
 "improved security."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:534
+#: includes/integrations/stripe/Settings.php:615
 #. translators: %1$s Stripe payment mode.
 msgid "Your manually managed %1$s mode API keys are valid."
 msgstr ""
 
-#: includes/integrations/stripe/Settings.php:550
+#: includes/integrations/stripe/Settings.php:631
 #. translators: %1$s Stripe payment mode.
 msgid "Your manually managed %1$s mode API keys are invalid."
 msgstr ""
@@ -4038,7 +4147,7 @@ msgstr ""
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:505
+#: includes/updates/class-wpum-license.php:565
 #. translators: %1$s wpum addon name %2$s plugin details url %3$s thickbox HTML
 #. class names
 msgid ""
@@ -4046,96 +4155,96 @@ msgid ""
 "version %4$s details</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:505
+#: includes/updates/class-wpum-license.php:565
 msgid "View %1$s version %2$s details"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:558
+#: includes/updates/class-wpum-license.php:618
 #. translators: %1$s licenses page URL
 msgid "<a href=\"%1$s\">Activate your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:568
+#: includes/updates/class-wpum-license.php:628
 #. translators: %1$s renewal URL
 msgid "<a href=\"%1$s\" target=\"_blank\">Renew your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:589
+#: includes/updates/class-wpum-license.php:649
 #. translators: %1$s activation URL %2$s wpum addon name
 msgid ""
 "Please <a href=\"%1$s\">activate your license</a> to receive updates and "
 "support for the %2$s addon."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:594
+#: includes/updates/class-wpum-license.php:654
 #. translators: %1$s activation URL
 msgid "Please <a href=\"%1$s\">activate your license</a> to update."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:600
-#: includes/updates/class-wpum-license.php:671
+#: includes/updates/class-wpum-license.php:660
+#: includes/updates/class-wpum-license.php:731
 #. translators: %s expiry date
 #. translators: %s expired license date
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:600
-#: includes/updates/class-wpum-license.php:671
+#: includes/updates/class-wpum-license.php:660
+#: includes/updates/class-wpum-license.php:731
 msgid ""
 "<a href=\"%1$s\" target=\"_blank\">Renew your license</a> to get access to "
 "updates and support."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:605
+#: includes/updates/class-wpum-license.php:665
 #. translators: %s wpum contact URL
 msgid ""
 "Your license key has been disabled. <a href=\"%s\" target=\"_blank\">Please "
 "contact support</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:608
-#: includes/updates/class-wpum-license.php:679
+#: includes/updates/class-wpum-license.php:668
+#: includes/updates/class-wpum-license.php:739
 msgid "Invalid license. Please double-check the license and try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:612
+#: includes/updates/class-wpum-license.php:672
 msgid "Your license is not active for this site."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:616
-#: includes/updates/class-wpum-license.php:687
+#: includes/updates/class-wpum-license.php:676
+#: includes/updates/class-wpum-license.php:747
 #. translators: %s wpum addon name
 msgid ""
 "This appears to be an invalid license key for %s. Please double-check the "
 "license and try again."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:619
+#: includes/updates/class-wpum-license.php:679
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:645
+#: includes/updates/class-wpum-license.php:705
 msgid "License successfully activated."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:647
+#: includes/updates/class-wpum-license.php:707
 msgid "Deactivate license"
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:676
+#: includes/updates/class-wpum-license.php:736
 #. translators: %s wpum contact url
 msgid ""
 "Your license key has been disabled. <a href=\"%s\">Please contact "
 "support</a>."
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:683
+#: includes/updates/class-wpum-license.php:743
 msgid ""
 "Your license is not active for this site. Please click 'Save Changes' to "
 "activate. "
 msgstr ""
 
-#: includes/updates/class-wpum-license.php:691
+#: includes/updates/class-wpum-license.php:751
 #. translators: %1$s wpum subscription url %2$s wpum purchase history url
 msgid ""
 "Your license key has reached its activation limit. <a target=\"_blank\" "
@@ -4857,27 +4966,27 @@ msgctxt "Post Type Singular Name"
 msgid "Directory"
 msgstr ""
 
-#: includes/functions.php:847
+#: includes/functions.php:857
 msgctxt "Permalink structure"
 msgid "Display user ID"
 msgstr ""
 
-#: includes/functions.php:852
+#: includes/functions.php:862
 msgctxt "Permalink structure"
 msgid "Display username"
 msgstr ""
 
-#: includes/functions.php:857
+#: includes/functions.php:867
 msgctxt "Permalink structure"
 msgid "Display nickname"
 msgstr ""
 
-#: includes/functions.php:853
+#: includes/functions.php:863
 msgctxt "Example of permalink setting"
 msgid "username"
 msgstr ""
 
-#: includes/functions.php:858
+#: includes/functions.php:868
 msgctxt "Example of permalink setting"
 msgid "nickname"
 msgstr ""
