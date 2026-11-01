@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.10.3\n"
+"Project-Id-Version: WP User Manager 2.10.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-10-30 21:26:44+00:00\n"
+"POT-Creation-Date: 2026-11-01 08:30:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgstr ""
 msgid "%s is invalid"
 msgstr ""
 
-#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:659
+#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:689
 #. translators: %1s$ field label %2$s file extension %3$s allowed extensions
 #. translators: %1$s: file label %2$s: file type  %3$s: allowed types
 msgid "\"%1$s\" (filetype %2$s) needs to be one of the following file types: %3$s"
@@ -292,7 +292,7 @@ msgstr ""
 #: includes/filters.php:45
 #: includes/forms/class-wpum-registration-forms-editor.php:157
 #: includes/forms/class-wpum-registration-forms-editor.php:563
-#: includes/functions.php:784
+#: includes/functions.php:814
 #: includes/integrations/elementor/widgets/class-wpum-elementor-widget.php:74
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/AccountPage.php:32
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/GroupDirectory.php:33
@@ -322,7 +322,7 @@ msgstr ""
 msgid "This nickname is already in use by someone else. Nicknames must be unique."
 msgstr ""
 
-#: includes/actions.php:422 includes/functions.php:792
+#: includes/actions.php:422 includes/functions.php:822
 #: templates/profile-card.php:44
 msgid "View Profile"
 msgstr ""
@@ -348,7 +348,7 @@ msgid "You must be logged in to access this site."
 msgstr ""
 
 #: includes/actions.php:748 includes/forms/class-wpum-form-privacy.php:77
-#: includes/functions.php:807
+#: includes/functions.php:837
 msgid "Profile Privacy"
 msgstr ""
 
@@ -438,7 +438,16 @@ msgstr ""
 msgid "Change permalinks"
 msgstr ""
 
-#: includes/admin/class-wpum-admin-notices.php:153
+#: includes/admin/class-wpum-admin-notices.php:78
+#. translators: %s URL of the profile settings
+msgid ""
+"<strong>WP User Manager:</strong> some users on this site have their email "
+"address as their display name, so it shows on their profile and in "
+"directories. To partly hide these addresses, turn on \"Obfuscate Display "
+"Name Emails\" in the <a href=\"%s\">profile settings</a>."
+msgstr ""
+
+#: includes/admin/class-wpum-admin-notices.php:162
 #. translators: %s WPUM admin URL
 msgid ""
 "WP User Manager has installed default data. You can go back to your <a "
@@ -1637,47 +1646,47 @@ msgid_plural "%s directories restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/directories/wpum-directories-functions.php:58
-#: includes/directories/wpum-directories-functions.php:72
+#: includes/directories/wpum-directories-functions.php:137
+#: includes/directories/wpum-directories-functions.php:151
 msgid "Default template"
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:96
+#: includes/directories/wpum-directories-functions.php:175
 msgid "Previous page"
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:97
+#: includes/directories/wpum-directories-functions.php:176
 msgid "Next page"
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:130
+#: includes/directories/wpum-directories-functions.php:209
 msgid "Directory settings cannot be read or saved before WordPress has loaded."
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:181
+#: includes/directories/wpum-directories-functions.php:260
 msgid "Directory settings must be an array."
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:197
+#: includes/directories/wpum-directories-functions.php:276
 #. translators: %s setting name
 msgid "Unknown directory setting: %s"
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:202
+#: includes/directories/wpum-directories-functions.php:281
 #. translators: %s setting name
 msgid "Invalid value for the %s directory setting."
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:277
+#: includes/directories/wpum-directories-functions.php:356
 #. translators: %s setting name
 msgid "The %s directory setting can only be changed in the directory editor."
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:298
+#: includes/directories/wpum-directories-functions.php:377
 msgid "The directory does not exist."
 msgstr ""
 
-#: includes/directories/wpum-directories-functions.php:388
+#: includes/directories/wpum-directories-functions.php:467
 msgid "The directory needs a title."
 msgstr ""
 
@@ -2404,8 +2413,8 @@ msgid "Example patterns"
 msgstr ""
 
 #: includes/fields/types/class-wpum-field-password.php:35
-#: includes/forms/class-wpum-form-login.php:95
-#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:788
+#: includes/forms/class-wpum-form-login.php:104
+#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:818
 msgid "Password"
 msgstr ""
 
@@ -2585,17 +2594,21 @@ msgstr ""
 msgid "<strong>Error:</strong> The username or password you entered is incorrect."
 msgstr ""
 
-#: includes/forms/class-wpum-form-login.php:61
+#: includes/forms/class-wpum-form-login.php:70
 msgid "Login Details"
 msgstr ""
 
-#: includes/forms/class-wpum-form-login.php:67
+#: includes/forms/class-wpum-form-login.php:76
 #: includes/forms/class-wpum-form-password-recovery.php:84
 msgid "Done"
 msgstr ""
 
-#: includes/forms/class-wpum-form-login.php:102
+#: includes/forms/class-wpum-form-login.php:111
 msgid "Remember me"
+msgstr ""
+
+#: includes/forms/class-wpum-form-login.php:202
+msgid "Please enter your login details."
 msgstr ""
 
 #: includes/forms/class-wpum-form-password-recovery.php:66
@@ -2979,30 +2992,30 @@ msgstr ""
 msgid "The page could not be saved."
 msgstr ""
 
-#: includes/functions.php:653
+#: includes/functions.php:683
 msgid "Sorry, you are not allowed to upload this file type."
 msgstr ""
 
-#: includes/functions.php:662
+#: includes/functions.php:692
 #. translators: %s: allowed file types
 msgid "Uploaded files need to be one of the following file types: %s"
 msgstr ""
 
-#: includes/functions.php:796 includes/shortcodes/shortcodes.php:147
+#: includes/functions.php:826 includes/shortcodes/shortcodes.php:147
 #: templates/profile-card.php:47 templates/user-overview.php:43
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/LogoutLink.php:50
 msgid "Logout"
 msgstr ""
 
-#: includes/functions.php:978
+#: includes/functions.php:1044
 msgid "About"
 msgstr ""
 
-#: includes/functions.php:982
+#: includes/functions.php:1048
 msgid "Posts"
 msgstr ""
 
-#: includes/functions.php:986
+#: includes/functions.php:1052
 msgid "Comments"
 msgstr ""
 
@@ -4966,27 +4979,27 @@ msgctxt "Post Type Singular Name"
 msgid "Directory"
 msgstr ""
 
-#: includes/functions.php:857
+#: includes/functions.php:887
 msgctxt "Permalink structure"
 msgid "Display user ID"
 msgstr ""
 
-#: includes/functions.php:862
+#: includes/functions.php:892
 msgctxt "Permalink structure"
 msgid "Display username"
 msgstr ""
 
-#: includes/functions.php:867
+#: includes/functions.php:897
 msgctxt "Permalink structure"
 msgid "Display nickname"
 msgstr ""
 
-#: includes/functions.php:863
+#: includes/functions.php:893
 msgctxt "Example of permalink setting"
 msgid "username"
 msgstr ""
 
-#: includes/functions.php:868
+#: includes/functions.php:898
 msgctxt "Example of permalink setting"
 msgid "nickname"
 msgstr ""
