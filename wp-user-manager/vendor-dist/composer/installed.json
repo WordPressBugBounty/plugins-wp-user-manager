@@ -1559,24 +1559,24 @@
         },
         {
             "name": "wp-user-manager\/wpum-blocks",
-            "version": "1.15",
-            "version_normalized": "1.15.0.0",
+            "version": "1.16",
+            "version_normalized": "1.16.0.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/WPUserManager\/wpum-blocks.git",
-                "reference": "fc3d01fe0baa2fb0fdf6a0f4cff30fc40bb1dbba"
+                "reference": "78f6530be071a36de78892e862fa5a713318f849"
             },
             "dist": {
                 "type": "zip",
-                "url": "https:\/\/api.github.com\/repos\/WPUserManager\/wpum-blocks\/zipball\/fc3d01fe0baa2fb0fdf6a0f4cff30fc40bb1dbba",
-                "reference": "fc3d01fe0baa2fb0fdf6a0f4cff30fc40bb1dbba",
+                "url": "https:\/\/api.github.com\/repos\/WPUserManager\/wpum-blocks\/zipball\/78f6530be071a36de78892e862fa5a713318f849",
+                "reference": "78f6530be071a36de78892e862fa5a713318f849",
                 "shasum": ""
             },
             "require": {
                 "composer\/installers": "~1.0",
                 "php": ">=5.6"
             },
-            "time": "2023-11-18T15:05:09+00:00",
+            "time": "2026-11-03T11:41:39+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1604,7 +1604,7 @@
             ],
             "support": {
                 "issues": "https:\/\/github.com\/WPUserManager\/wpum-blocks\/issues",
-                "source": "https:\/\/github.com\/WPUserManager\/wpum-blocks\/tree\/1.15"
+                "source": "https:\/\/github.com\/WPUserManager\/wpum-blocks\/tree\/1.16"
             },
             "install-path": "..\/wp-user-manager\/wpum-blocks"
         },

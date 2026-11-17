@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP User Manager 2.10.5\n"
+"Project-Id-Version: WP User Manager 2.10.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-manager\n"
-"POT-Creation-Date: 2026-11-01 08:30:18+00:00\n"
+"POT-Creation-Date: 2026-11-16 18:30:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -174,7 +174,7 @@ msgstr ""
 msgid "%s is invalid"
 msgstr ""
 
-#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:689
+#: includes/abstracts/class-wpum-form.php:372 includes/functions.php:696
 #. translators: %1s$ field label %2$s file extension %3$s allowed extensions
 #. translators: %1$s: file label %2$s: file type  %3$s: allowed types
 msgid "\"%1$s\" (filetype %2$s) needs to be one of the following file types: %3$s"
@@ -292,7 +292,7 @@ msgstr ""
 #: includes/filters.php:45
 #: includes/forms/class-wpum-registration-forms-editor.php:157
 #: includes/forms/class-wpum-registration-forms-editor.php:563
-#: includes/functions.php:814
+#: includes/functions.php:821
 #: includes/integrations/elementor/widgets/class-wpum-elementor-widget.php:74
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/AccountPage.php:32
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/GroupDirectory.php:33
@@ -322,7 +322,7 @@ msgstr ""
 msgid "This nickname is already in use by someone else. Nicknames must be unique."
 msgstr ""
 
-#: includes/actions.php:422 includes/functions.php:822
+#: includes/actions.php:422 includes/functions.php:829
 #: templates/profile-card.php:44
 msgid "View Profile"
 msgstr ""
@@ -343,42 +343,42 @@ msgstr ""
 msgid "The password reset email could not be sent."
 msgstr ""
 
-#: includes/actions.php:726
+#: includes/actions.php:771
 msgid "You must be logged in to access this site."
 msgstr ""
 
-#: includes/actions.php:748 includes/forms/class-wpum-form-privacy.php:77
-#: includes/functions.php:837
+#: includes/actions.php:862 includes/forms/class-wpum-form-privacy.php:77
+#: includes/functions.php:844
 msgid "Profile Privacy"
 msgstr ""
 
-#: includes/actions.php:750
+#: includes/actions.php:864
 msgid "Hide profile from guests"
 msgstr ""
 
-#: includes/actions.php:751
+#: includes/actions.php:865
 msgid "Hide this profile from guests. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:752
+#: includes/actions.php:866
 msgid "Hide profile from members"
 msgstr ""
 
-#: includes/actions.php:753
+#: includes/actions.php:867
 msgid "Hide this profile from members. Overrides the global profile options."
 msgstr ""
 
-#: includes/actions.php:787
+#: includes/actions.php:901
 #: includes/directories/class-wpum-directories-editor.php:311
 #: includes/fields/types/class-wpum-field-userrole.php:72
 msgid "User Roles"
 msgstr ""
 
-#: includes/actions.php:793
+#: includes/actions.php:907
 msgid "Select one or more roles for this user."
 msgstr ""
 
-#: includes/actions.php:1366 includes/shortcodes/shortcodes.php:199
+#: includes/actions.php:1495 includes/shortcodes/shortcodes.php:199
 msgid ""
 "Registration complete. We have sent you a confirmation email with your "
 "details."
@@ -1772,7 +1772,7 @@ msgstr ""
 #: includes/emails/class-wpum-emails-list.php:93
 #: includes/fields/types/class-wpum-field-email.php:35
 #: includes/forms/class-wpum-form-password-recovery.php:108
-#: includes/functions.php:291
+#: includes/functions.php:298
 msgid "Email"
 msgstr ""
 
@@ -1851,7 +1851,7 @@ msgstr ""
 #: includes/emails/class-wpum-emails.php:370
 #: includes/fields/class-wpum-field.php:359
 #: includes/forms/class-wpum-form-password-recovery.php:105
-#: includes/functions.php:287
+#: includes/functions.php:294
 msgid "Username"
 msgstr ""
 
@@ -2414,7 +2414,7 @@ msgstr ""
 
 #: includes/fields/types/class-wpum-field-password.php:35
 #: includes/forms/class-wpum-form-login.php:104
-#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:818
+#: includes/forms/class-wpum-form-password.php:99 includes/functions.php:825
 msgid "Password"
 msgstr ""
 
@@ -2564,7 +2564,7 @@ msgid "The %s setting takes a different kind of value."
 msgstr ""
 
 #: includes/fields/wpum-fields-functions.php:903
-#: includes/forms/wpum-registration-forms-functions.php:331
+#: includes/forms/wpum-registration-forms-functions.php:341
 #. translators: %1$s value, %2$s setting key
 #. translators: %1$s value, %2$s setting ID
 msgid "%1$s is not an option for the %2$s setting."
@@ -2626,7 +2626,7 @@ msgid "Reset password"
 msgstr ""
 
 #: includes/forms/class-wpum-form-password-recovery.php:103
-#: includes/functions.php:83 includes/functions.php:293
+#: includes/functions.php:83 includes/functions.php:300
 msgid "Username or Email Address"
 msgstr ""
 
@@ -2962,7 +2962,8 @@ msgstr ""
 msgid "Unknown registration form setting: %s"
 msgstr ""
 
-#: includes/forms/wpum-registration-forms-functions.php:310
+#: includes/forms/wpum-registration-forms-functions.php:315
+#: includes/forms/wpum-registration-forms-functions.php:322
 #. translators: %s role key
 msgid "The %s role cannot be assigned at registration."
 msgstr ""
@@ -2979,43 +2980,43 @@ msgstr ""
 msgid "Email only"
 msgstr ""
 
-#: includes/functions.php:180
+#: includes/functions.php:187
 #. translators: %s list of core pages
 msgid "Unknown page. Use one of: %s"
 msgstr ""
 
-#: includes/functions.php:194
+#: includes/functions.php:201
 msgid "The page must be a published or private page."
 msgstr ""
 
-#: includes/functions.php:217
+#: includes/functions.php:224
 msgid "The page could not be saved."
 msgstr ""
 
-#: includes/functions.php:683
+#: includes/functions.php:690
 msgid "Sorry, you are not allowed to upload this file type."
 msgstr ""
 
-#: includes/functions.php:692
+#: includes/functions.php:699
 #. translators: %s: allowed file types
 msgid "Uploaded files need to be one of the following file types: %s"
 msgstr ""
 
-#: includes/functions.php:826 includes/shortcodes/shortcodes.php:147
+#: includes/functions.php:833 includes/shortcodes/shortcodes.php:147
 #: templates/profile-card.php:47 templates/user-overview.php:43
 #: vendor/wp-user-manager/wpum-blocks/includes/classes/Blocks/LogoutLink.php:50
 msgid "Logout"
 msgstr ""
 
-#: includes/functions.php:1044
+#: includes/functions.php:1051
 msgid "About"
 msgstr ""
 
-#: includes/functions.php:1048
+#: includes/functions.php:1055
 msgid "Posts"
 msgstr ""
 
-#: includes/functions.php:1052
+#: includes/functions.php:1059
 msgid "Comments"
 msgstr ""
 
@@ -3235,59 +3236,63 @@ msgstr ""
 msgid "Select User Directory"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:257
-#: includes/integrations/stripe/Account.php:272
+#: includes/integrations/stripe/Account.php:178
+msgid "Please complete your payment to access this site."
+msgstr ""
+
+#: includes/integrations/stripe/Account.php:287
+#: includes/integrations/stripe/Account.php:302
 msgid "Billing"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:286
+#: includes/integrations/stripe/Account.php:316
 msgid ""
 "Your subscription has been changed to a plan that isn't available for your "
 "account. Use Manage Billing to switch back to your plan."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:290
+#: includes/integrations/stripe/Account.php:320
 msgid "An active subscription is required."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:296
+#: includes/integrations/stripe/Account.php:326
 msgid "Payment is required for access to the site."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:303
+#: includes/integrations/stripe/Account.php:333
 #. translators: %s the datetime the subscription will cancel.
 msgid "Your plan will be canceled on <strong>%s</strong>."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:423
-#: includes/integrations/stripe/Account.php:456
+#: includes/integrations/stripe/Account.php:453
+#: includes/integrations/stripe/Account.php:486
 msgid "Unknown Error"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:429
+#: includes/integrations/stripe/Account.php:459
 msgid "No subscription"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:435
+#: includes/integrations/stripe/Account.php:465
 msgid "Error creating Stripe session"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:449
-#: includes/integrations/stripe/Account.php:463
+#: includes/integrations/stripe/Account.php:479
+#: includes/integrations/stripe/Account.php:493
 msgid "Unknown plan"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:467
+#: includes/integrations/stripe/Account.php:497
 #: includes/integrations/stripe/Registration.php:342
 msgid "This plan is no longer available. Please contact the site owner."
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:477
+#: includes/integrations/stripe/Account.php:507
 #: includes/integrations/stripe/Registration.php:411
 msgid "There has been an issue when registering, please contact the site owner"
 msgstr ""
 
-#: includes/integrations/stripe/Account.php:525
+#: includes/integrations/stripe/Account.php:555
 msgid "Payment successfully completed."
 msgstr ""
 
@@ -4979,27 +4984,27 @@ msgctxt "Post Type Singular Name"
 msgid "Directory"
 msgstr ""
 
-#: includes/functions.php:887
+#: includes/functions.php:894
 msgctxt "Permalink structure"
 msgid "Display user ID"
 msgstr ""
 
-#: includes/functions.php:892
+#: includes/functions.php:899
 msgctxt "Permalink structure"
 msgid "Display username"
 msgstr ""
 
-#: includes/functions.php:897
+#: includes/functions.php:904
 msgctxt "Permalink structure"
 msgid "Display nickname"
 msgstr ""
 
-#: includes/functions.php:893
+#: includes/functions.php:900
 msgctxt "Example of permalink setting"
 msgid "username"
 msgstr ""
 
-#: includes/functions.php:898
+#: includes/functions.php:905
 msgctxt "Example of permalink setting"
 msgid "nickname"
 msgstr ""

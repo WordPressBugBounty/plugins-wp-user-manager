@@ -127,7 +127,7 @@ class WPUM_Blocks
             $allowed_roles = empty($attrs['wpum_restrict_roles']) || !\is_array($attrs['wpum_restrict_roles']) ? array() : $attrs['wpum_restrict_roles'];
             $allowed_roles = \array_map('trim', $allowed_roles);
             $current_user = wp_get_current_user();
-            if (is_user_logged_in() && \array_intersect($current_user->roles, $allowed_roles)) {
+            if (is_user_logged_in() && \array_intersect(wpum_get_user_access_roles($current_user), $allowed_roles)) {
                 return $block_content;
             }
         }
@@ -214,7 +214,7 @@ class WPUM_Blocks
             $allowed_roles = empty($instance['wpum_restrict_roles']) || !\is_array($instance['wpum_restrict_roles']) ? array() : $instance['wpum_restrict_roles'];
             $allowed_roles = \array_map('trim', $allowed_roles);
             $current_user = wp_get_current_user();
-            if (is_user_logged_in() && \array_intersect($current_user->roles, $allowed_roles)) {
+            if (is_user_logged_in() && \array_intersect(wpum_get_user_access_roles($current_user), $allowed_roles)) {
                 return $instance;
             }
         }
